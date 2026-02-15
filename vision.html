@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2Loud — The Vision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7B6B9B;
+      --purple-deep: #5E4F7A;
+      --green: #4A6B52;
+      --green-deep: #3A5641;
+      --orange: #D4804A;
+      --orange-deep: #B86A38;
+      --blue: #8AAED4;
+      --blue-deep: #7196BE;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #fff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Shared section styles ── */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .section-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .section-inner p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .section-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-inner em {
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .section-inner strong {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* ── HERO — Purple ── */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--purple);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero .back-link {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero .back-link:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .hero-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease-out both;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      max-width: 580px;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s ease-out 0.2s both;
+    }
+
+    /* ── THE PROBLEM — Green ── */
+    .problem {
+      background: var(--green);
+    }
+
+    /* ── WHAT WE'RE BUILDING — Blue ── */
+    .building {
+      background: var(--blue);
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 600px) {
+      .pillars { grid-template-columns: 1fr 1fr; }
+    }
+
+    .pillar {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .pillar-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* ── THE DATASET — Orange ── */
+    .dataset {
+      background: var(--orange);
+    }
+
+    /* ── WHY NON-PROFIT — Deep Purple ── */
+    .nonprofit {
+      background: var(--purple-deep);
+    }
+
+    /* ── CLOSING — Green Deep ── */
+    .closing-section {
+      background: var(--green-deep);
+      text-align: center;
+    }
+
+    .closing-section .section-inner {
+      max-width: 540px;
+    }
+
+    .closing-section h2 {
+      font-size: 2rem;
+    }
+
+    .closing-section p {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .closing-section .cta-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .closing-section .cta-link:hover {
+      background: var(--orange-deep);
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      background: var(--green-deep);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero — Purple -->
+  <section class="hero">
+    <a href="index.html" class="back-link">&larr; back to 2Loud</a>
+    <div class="hero-logo">2Loud</div>
+    <h1>More than a mute button.</h1>
+    <p class="subtitle">2Loud started as a Chrome extension. But the thing we're really building is a map of how sound affects people — and an open dataset that doesn't exist yet.</p>
+  </section>
+
+  <!-- The Problem — Green -->
+  <section class="problem">
+    <div class="section-inner fade-in">
+      <h2>The sounds no one's studying</h2>
+      <p>There's no open dataset that maps how real sounds in real media affect real people. Researchers studying sound sensitivity, accessibility, and audio AI are working with lab recordings and synthetic data — not the actual soundscapes people encounter when they press play on Netflix.</p>
+      <p>Meanwhile, millions of people are having measurable reactions to specific sounds every day: a dog barking at a TV doorbell, a baby startled awake by a gunshot in a show, someone flinching at a scream in a movie.</p>
+      <p>These reactions are data. And right now, that data disappears.</p>
+    </div>
+  </section>
+
+  <!-- What We're Building — Blue -->
+  <section class="building">
+    <div class="section-inner fade-in">
+      <h2>What we're actually building</h2>
+      <p>On the surface, 2Loud is a Chrome extension that ducks the volume on sounds you don't want to hear. Under the surface, every time someone marks a sound as bothersome — or confirms that our AI got it right — they're contributing to something bigger.</p>
+      <p>An open, anonymized dataset of human-verified sound classifications in real media content. The first of its kind.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🔬</div>
+          <h3>For researchers</h3>
+          <p>Neuroscientists and accessibility researchers get real-world data on sound sensitivity they can't get from lab studies.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🤖</div>
+          <h3>For AI</h3>
+          <p>Audio classification models get human-verified training data grounded in actual media, not synthetic benchmarks.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">♿</div>
+          <h3>For accessibility</h3>
+          <p>Hearing aid companies and assistive tech developers get signal on which sounds cause real problems in real environments.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🎬</div>
+          <h3>For content creators</h3>
+          <p>Aggregate data helps platforms and filmmakers understand what sounds are causing viewers to mute, duck, or stop watching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Dataset — Orange -->
+  <section class="dataset">
+    <div class="section-inner fade-in">
+      <h2>Privacy as architecture, not afterthought</h2>
+      <p>Everything runs locally in your browser. No audio ever leaves your device. The only data that travels is anonymous, event-level feedback: <em>this sound, at this timestamp, was flagged by a user.</em></p>
+      <p>We don't collect names, emails, demographics, or anything that could identify you. We deliberately chose not to — because the science doesn't need it, and you deserve better than being the product.</p>
+      <p>The raw timestamp data — the most valuable part — stays protected. Aggregate patterns get shared openly with the research community. That's the deal, and it won't change.</p>
+    </div>
+  </section>
+
+  <!-- Why Non-Profit — Deep Purple -->
+  <section class="nonprofit">
+    <div class="section-inner fade-in">
+      <h2>Why this is a non-profit</h2>
+      <p>2Loud is structured as a 501(c)(3) because the incentives matter. A for-profit company would eventually face pressure to monetize the data, expand collection, or compromise on privacy. We wanted to make those decisions irreversible from day one.</p>
+      <p>Being a non-profit means we can keep the dataset open, resist the pull to track users, and measure success the way it should be measured: <strong>dogs that stop barking, babies that stay asleep, people who can finally just watch a movie.</strong></p>
+      <p>If the data we create helps researchers understand sound sensitivity better, or helps AI models get smarter about real-world audio — that's the bonus. The utility comes first.</p>
+    </div>
+  </section>
+
+  <!-- Closing — Green Deep -->
+  <section class="closing-section">
+    <div class="section-inner fade-in">
+      <h2>This starts small.</h2>
+      <p>Right now, 2Loud detects four sounds: doorbells, barking, gunshots, and screams. It runs in Chrome. It's being tested by friends. That's it — and that's enough to start building something real.</p>
+      <a href="index.html" class="cta-link">Join the waitlist</a>
+    </div>
+  </section>
+
+  <footer>2Loud &mdash; made with care by Yifan</footer>
+
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
