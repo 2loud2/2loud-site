@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2Loud — The Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7B6B9B;
+      --purple-deep: #5E4F7A;
+      --green: #4A6B52;
+      --green-deep: #3A5641;
+      --orange: #D4804A;
+      --orange-deep: #B86A38;
+      --blue: #8AAED4;
+      --blue-deep: #7196BE;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #fff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .section-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .section-inner p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .section-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-inner em {
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .section-inner strong {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* ── HERO — Purple ── */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--purple);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero .back-link {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero .back-link:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .hero-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease-out both;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      max-width: 580px;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s ease-out 0.2s both;
+    }
+
+    .photo-section {
+      background: var(--purple);
+      padding: 0 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .photo-section img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.2);
+      animation: fadeUp 0.8s ease-out 0.3s both;
+    }
+
+    .photo-caption {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+      animation: fadeUp 0.8s ease-out 0.4s both;
+    }
+
+    /* ── Sections ── */
+    .commotionitus { background: var(--green); }
+    .gina { background: var(--orange); }
+    .question { background: var(--blue); }
+    .building { background: var(--purple-deep); }
+
+    .closing-section {
+      background: var(--green-deep);
+      text-align: center;
+    }
+
+    .closing-section .section-inner {
+      max-width: 540px;
+    }
+
+    .closing-section h2 {
+      font-size: 2rem;
+    }
+
+    .closing-section p {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      padding: 0.9rem 1.75rem;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-1px);
+    }
+
+    .nav-links .primary {
+      background: var(--orange);
+    }
+
+    .nav-links .primary:hover {
+      background: var(--orange-deep);
+    }
+
+    .nav-links .secondary {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .nav-links .secondary:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      background: var(--green-deep);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero — Purple -->
+  <section class="hero">
+    <a href="index.html" class="back-link">&larr; back to 2Loud</a>
+    <div class="hero-logo">2Loud</div>
+    <h1>I have commotionitus.</h1>
+    <p class="subtitle">It's not a real condition. But the problem is.</p>
+  </section>
+
+  <!-- Photo -->
+  <div class="photo-section">
+    <img src="yifan-gina.jpg" alt="Yifan and Gina">
+    <div class="photo-caption">Me and Gina. She's the reason this exists.</div>
+  </div>
+
+  <!-- Commotionitus — Green -->
+  <section class="commotionitus">
+    <div class="section-inner fade-in">
+      <h2>The made-up condition</h2>
+      <p>I tell friends I have "commotionitus." It's my word for hating loud, chaotic environments. Restaurants where you can't hear the person across from you. Action movies mixed way too loud. Sirens, alarms, sudden anything.</p>
+      <p>The condition isn't real, but that doesn't make the feeling any less so.</p>
+    </div>
+  </section>
+
+  <!-- Gina — Orange -->
+  <section class="gina">
+    <div class="section-inner fade-in">
+      <h2>Then there's Gina.</h2>
+      <p>Gina is my dog. She's sensitive. Every doorbell, gunshot, or siren that comes through the TV triggers unnecessary stress. Movie night becomes a game of hovering over the remote, trying to mute before the next loud moment.</p>
+      <p>And it's not just us. Friends have told me about cats bolting off the couch at thunder sounds, partners who can't handle chewing noises, roommates who flinch at sirens.</p>
+      <p>Turns out a lot of people have this problem.</p>
+    </div>
+  </section>
+
+  <!-- The Question — Blue -->
+  <section class="question">
+    <div class="section-inner fade-in">
+      <h2>The question that started this</h2>
+      <p>One day I asked a simple question: <strong>"Is there an app that can remove specific sounds from a movie?"</strong></p>
+      <p>The answer was no. Not on any streaming platform, not in any app store, not anywhere.</p>
+    </div>
+  </section>
+
+  <!-- Building It — Deep Purple -->
+  <section class="building">
+    <div class="section-inner fade-in">
+      <h2>I'm not a programmer.</h2>
+      <p>I don't have a CS degree. I'm building this with AI tools and the belief that the thing should exist.</p>
+      <p>2Loud is a Chrome extension that listens to what you're streaming and ducks the volume on sounds you choose — doorbells, gunshots, screams, barking. It runs entirely in your browser. No data leaves your machine.</p>
+    </div>
+  </section>
+
+  <!-- Closing — Green Deep -->
+  <section class="closing-section">
+    <div class="section-inner fade-in">
+      <h2>That's the story so far.</h2>
+      <p>It's early. It's scrappy. It's being tested by friends. But I think it might help.</p>
+      <div class="nav-links">
+        <a href="index.html" class="primary">Join the waitlist</a>
+        <a href="vision.html" class="secondary">Read the vision</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>2Loud &mdash; made with care by Yifan</footer>
+
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

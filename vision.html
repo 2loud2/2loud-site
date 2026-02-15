@@ -37,6 +37,7 @@
     .section-inner {
       max-width: 640px;
       margin: 0 auto;
+      text-align: left;
     }
 
     .section-inner h2 {
@@ -45,6 +46,7 @@
       font-size: 1.8rem;
       margin-bottom: 1.5rem;
       line-height: 1.3;
+      text-align: center;
     }
 
     .section-inner p {
@@ -88,7 +90,7 @@
       right: -15%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -263,45 +265,45 @@
     <a href="index.html" class="back-link">&larr; back to 2Loud</a>
     <div class="hero-logo">2Loud</div>
     <h1>More than a mute button.</h1>
-    <p class="subtitle">2Loud started as a Chrome extension. But the thing we're really building is a map of how sound affects people — and an open dataset that doesn't exist yet.</p>
+    <p class="subtitle">2Loud is starting as a Chrome extension. But the thing we're really trying to build is an open dataset of how sound affects people.</p>
   </section>
 
   <!-- The Problem — Green -->
   <section class="problem">
     <div class="section-inner fade-in">
-      <h2>The sounds no one's studying</h2>
-      <p>There's no open dataset that maps how real sounds in real media affect real people. Researchers studying sound sensitivity, accessibility, and audio AI are working with lab recordings and synthetic data — not the actual soundscapes people encounter when they press play on Netflix.</p>
-      <p>Meanwhile, millions of people are having measurable reactions to specific sounds every day: a dog barking at a TV doorbell, a baby startled awake by a gunshot in a show, someone flinching at a scream in a movie.</p>
-      <p>These reactions are data. And right now, that data disappears.</p>
+      <h2>The opportunity</h2>
+      <p>People have real reactions to specific sounds every day: a dog barking at a TV doorbell, a baby startled awake by a gunshot in a show, someone flinching at a scream in a movie.</p>
+      <p>These reactions are data — data that could make your world a little more peaceful.</p>
+      <p>What if we could learn from it?</p>
     </div>
   </section>
 
   <!-- What We're Building — Blue -->
   <section class="building">
     <div class="section-inner fade-in">
-      <h2>What we're actually building</h2>
-      <p>On the surface, 2Loud is a Chrome extension that ducks the volume on sounds you don't want to hear. Under the surface, every time someone marks a sound as bothersome — or confirms that our AI got it right — they're contributing to something bigger.</p>
-      <p>An open, anonymized dataset of human-verified sound classifications in real media content. The first of its kind.</p>
+      <h2>What we're trying to build</h2>
+      <p>On the surface, 2Loud is a Chrome extension that ducks the volume on sounds you don't want to hear. Under the surface, the hope is that every time someone marks a sound as bothersome — or confirms that our AI got it right — they'd be helping build an open dataset.</p>
+      <p>An open, anonymized dataset of human-verified sound classifications in real media content.</p>
       <div class="pillars">
         <div class="pillar">
           <div class="pillar-icon">🔬</div>
           <h3>For researchers</h3>
-          <p>Neuroscientists and accessibility researchers get real-world data on sound sensitivity they can't get from lab studies.</p>
+          <p>Neuroscientists and accessibility researchers could get real-world data on sound sensitivity they can't get from lab studies.</p>
         </div>
         <div class="pillar">
           <div class="pillar-icon">🤖</div>
           <h3>For AI</h3>
-          <p>Audio classification models get human-verified training data grounded in actual media, not synthetic benchmarks.</p>
+          <p>Audio classification models could get human-verified training data grounded in actual media, not synthetic benchmarks.</p>
         </div>
         <div class="pillar">
           <div class="pillar-icon">♿</div>
           <h3>For accessibility</h3>
-          <p>Hearing aid companies and assistive tech developers get signal on which sounds cause real problems in real environments.</p>
+          <p>Hearing aid companies and assistive tech developers could get signal on which sounds cause real problems in real environments.</p>
         </div>
         <div class="pillar">
-          <div class="pillar-icon">🎬</div>
-          <h3>For content creators</h3>
-          <p>Aggregate data helps platforms and filmmakers understand what sounds are causing viewers to mute, duck, or stop watching.</p>
+          <div class="pillar-icon">🛋️</div>
+          <h3>For you</h3>
+          <p>Before any of that matters — your dog stays calm, your baby stays asleep, and you get to just watch something without bracing for the next loud moment.</p>
         </div>
       </div>
     </div>
@@ -311,27 +313,30 @@
   <section class="dataset">
     <div class="section-inner fade-in">
       <h2>Privacy as architecture, not afterthought</h2>
-      <p>Everything runs locally in your browser. No audio ever leaves your device. The only data that travels is anonymous, event-level feedback: <em>this sound, at this timestamp, was flagged by a user.</em></p>
-      <p>We don't collect names, emails, demographics, or anything that could identify you. We deliberately chose not to — because the science doesn't need it, and you deserve better than being the product.</p>
-      <p>The raw timestamp data — the most valuable part — stays protected. Aggregate patterns get shared openly with the research community. That's the deal, and it won't change.</p>
+      <p>Everything is designed to run locally in your browser. No audio ever leaves your device. The only data that would travel is anonymous, event-level feedback: <em>this sound, at this timestamp, was flagged by a user.</em></p>
+      <p>We're choosing not to collect names, emails, demographics, or anything that could identify you — because the science doesn't need it, and neither do we.</p>
+      <p>The raw timestamp data — the most valuable part — will stay protected. Aggregate patterns will be shared openly with the research community. That's the deal, and we intend to keep it.</p>
     </div>
   </section>
 
   <!-- Why Non-Profit — Deep Purple -->
   <section class="nonprofit">
     <div class="section-inner fade-in">
-      <h2>Why this is a non-profit</h2>
-      <p>2Loud is structured as a 501(c)(3) because the incentives matter. A for-profit company would eventually face pressure to monetize the data, expand collection, or compromise on privacy. We wanted to make those decisions irreversible from day one.</p>
+      <h2>Why this will be a non-profit</h2>
+      <p>We're building 2Loud as a 501(c)(3) because the incentives matter.</p>
+      <p>We could build this as a startup. The data alone — behavioral patterns tied to sound sensitivity across every streaming platform — would make a compelling pitch deck. Segment it by condition, sell it to advertisers, license it to platforms. VCs would take that meeting.</p>
+      <p>We don't want to build that company. A for-profit version would eventually face pressure to monetize the data, expand collection, or compromise on privacy. We want to make those decisions irreversible from day one.</p>
       <p>Being a non-profit means we can keep the dataset open, resist the pull to track users, and measure success the way it should be measured: <strong>dogs that stop barking, babies that stay asleep, people who can finally just watch a movie.</strong></p>
-      <p>If the data we create helps researchers understand sound sensitivity better, or helps AI models get smarter about real-world audio — that's the bonus. The utility comes first.</p>
     </div>
   </section>
 
   <!-- Closing — Green Deep -->
   <section class="closing-section">
     <div class="section-inner fade-in">
-      <h2>This starts small.</h2>
-      <p>Right now, 2Loud detects four sounds: doorbells, barking, gunshots, and screams. It runs in Chrome. It's being tested by friends. That's it — and that's enough to start building something real.</p>
+      <h2>Contribute or don't.</h2>
+      <p>This is public because we want it to be. The idea is here. The vision is here. The ethical framework is here.</p>
+      <p>If you want to build something adjacent, go ahead. If you want to help build this specific thing, reach out. If you want to tell us this already exists and we missed it, please do.</p>
+      <p>We're not protecting this with secrecy. We're protecting it by being the ones who build it right.</p>
       <a href="index.html" class="cta-link">Join the waitlist</a>
     </div>
   </section>
