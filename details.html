@@ -296,7 +296,7 @@
       <h2>How the technology works</h2>
       <p>2Loud uses Google's <strong>YAMNet</strong> model — a pre-trained audio classification model that recognizes 527 sound categories. It runs locally in the browser via <strong>TensorFlow.js</strong>. No server, no cloud, no external processing.</p>
       <p>The extension taps into the browser's <strong>Web Audio API</strong> — the same infrastructure that powers equalizers and bass boost extensions. It intercepts the audio stream from whatever you're watching, routes it through the model for classification, and adjusts the volume before it reaches your speakers.</p>
-      <p>A short buffer gives the model time to classify sounds before they play. When it detects a trigger — a doorbell, a gunshot, a scream — it smoothly ducks the volume and fades it back up after the sound passes.</p>
+      <p>A short buffer gives the model time to classify sounds before they play. When it detects a trigger — a doorbell, a gunshot, a scream — it smoothly lowers the volume and fades it back up after the sound passes.</p>
       <p>The model doesn't listen through your microphone. It reads the audio data flowing from the video player. Your volume can be at zero and the model is still processing. It doesn't pick up your dog barking in the other room. It only processes what's coming from the browser tab.</p>
     </div>
   </section>
@@ -319,14 +319,14 @@
       <ul>
         <li>Chrome extension that captures browser audio</li>
         <li>YAMNet integration via TensorFlow.js for real-time classification</li>
-        <li>Basic volume ducking when a target sound is detected</li>
+        <li>Basic volume lowering when a target sound is detected</li>
         <li>Testing on YouTube first</li>
       </ul>
 
       <h3>Phase 2 — Core product</h3>
       <ul>
         <li>UI for selecting which sound categories to filter</li>
-        <li>Adjustable sensitivity and ducking intensity</li>
+        <li>Adjustable sensitivity and lowering intensity</li>
         <li>Feedback mechanism (correct/incorrect classification)</li>
         <li>Multi-platform testing (Netflix, Disney+, Hulu)</li>
         <li>Chrome Web Store listing</li>
@@ -453,7 +453,7 @@
         <tr>
           <td>Abuse potential (surveillance, censorship)</td>
           <td>Low</td>
-          <td>Extension only ducks volume — doesn't record, transmit, or store audio</td>
+          <td>Extension only lowers volume — doesn't record, transmit, or store audio</td>
         </tr>
       </table>
     </div>
@@ -464,7 +464,7 @@
     <div class="section-inner fade-in">
       <h2>What 2Loud is not</h2>
       <ul>
-        <li>Not an audio editor. It doesn't separate tracks. It ducks volume when trigger sounds are classified.</li>
+        <li>Not an audio editor. It doesn't separate tracks. It lowers volume when trigger sounds are classified.</li>
         <li>Not a censorship tool. It gives users control over their own audio environment.</li>
         <li>Not a surveillance tool. It processes audio locally, stores nothing, transmits no audio.</li>
         <li>Not a startup with an exit strategy. It's a non-profit built to serve a need and produce open data.</li>
