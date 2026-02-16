@@ -166,7 +166,7 @@
 
     /* ── HOW IT WORKS — Blue ── */
     .how {
-      background: var(--blue);
+      background: var(--orange);
       padding: 5rem 1.5rem;
       text-align: center;
     }
@@ -222,7 +222,7 @@
 
     /* ── WAITLIST — Deep Purple ── */
     .waitlist {
-      background: var(--orange);
+      background: var(--blue);
       padding: 5rem 1.5rem;
       text-align: center;
     }
@@ -241,84 +241,58 @@
       line-height: 1.6;
     }
 
-    /* Checkboxes */
-    .interest-group {
-      max-width: 380px;
-      margin: 0 auto 1.5rem;
+    /* Signup options */
+    .signup-options {
+      max-width: 400px;
+      margin: 1rem auto 0;
       text-align: left;
     }
 
-    .interest-label-header {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 0.75rem;
-      text-align: center;
-    }
-
-    .interest-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
-
-    .interest-option {
+    .signup-option {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       cursor: pointer;
-      padding: 0.5rem 0.75rem;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: all 0.2s;
+      padding: 0.4rem 0;
       user-select: none;
     }
 
-    .interest-option:hover {
-      background: rgba(255,255,255,0.14);
-      border-color: rgba(255,255,255,0.2);
-    }
-
-    .interest-option input[type="checkbox"] {
+    .signup-option input[type="checkbox"] {
       display: none;
     }
 
-    .interest-check {
-      width: 18px;
-      height: 18px;
-      min-width: 18px;
-      border-radius: 5px;
-      border: 2px solid rgba(255,255,255,0.35);
+    .option-check {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border-radius: 4px;
+      border: 2px solid rgba(255,255,255,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
-      font-size: 11px;
+      font-size: 10px;
     }
 
-    .interest-option input:checked ~ .interest-check {
-      background: rgba(255,255,255,0.25);
-      border-color: rgba(255,255,255,0.6);
+    .signup-option input:checked ~ .option-check {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.55);
     }
 
-    .interest-option input:checked ~ .interest-check::after {
+    .signup-option input:checked ~ .option-check::after {
       content: '✓';
       color: #fff;
       font-weight: 700;
     }
 
-    .interest-option input:checked ~ .interest-text {
-      color: #fff;
-    }
-
-    .interest-text {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
+    .option-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
       transition: color 0.2s;
     }
 
-    .interest-emoji {
-      font-size: 1.1rem;
+    .signup-option input:checked ~ .option-text {
+      color: rgba(255,255,255,0.85);
     }
 
     /* Email form */
@@ -399,7 +373,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--purple-deep);
+      background: var(--green-deep);
       text-align: center;
       padding: 2rem 1.5rem;
       font-size: 0.85rem;
@@ -423,7 +397,6 @@
       .hero-body { font-size: 1rem; }
       .card-grid { grid-template-columns: 1fr; }
       .email-form { flex-direction: column; }
-      .interest-options { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -485,39 +458,21 @@
     <h2>Want in early?</h2>
     <p>I'm building this now and sharing it with friends first. Drop your email and I'll let you know when it's ready.</p>
 
-    <div class="interest-group">
-      <div class="interest-label-header">I'm interested because:</div>
-      <div class="interest-options">
-        <label class="interest-option">
-          <input type="checkbox" name="interest" value="dog">
-          <span class="interest-check"></span>
-          <span class="interest-emoji">🐕</span>
-          <span class="interest-text">My dog reacts</span>
-        </label>
-        <label class="interest-option">
-          <input type="checkbox" name="interest" value="baby">
-          <span class="interest-check"></span>
-          <span class="interest-emoji">👶</span>
-          <span class="interest-text">Sleeping baby</span>
-        </label>
-        <label class="interest-option">
-          <input type="checkbox" name="interest" value="sensory">
-          <span class="interest-check"></span>
-          <span class="interest-emoji">🎧</span>
-          <span class="interest-text">Sound sensitivity</span>
-        </label>
-        <label class="interest-option">
-          <input type="checkbox" name="interest" value="curious">
-          <span class="interest-check"></span>
-          <span class="interest-emoji">✨</span>
-          <span class="interest-text">Just curious</span>
-        </label>
-      </div>
-    </div>
-
     <div class="email-form" id="waitlistForm">
       <input type="email" placeholder="your@email.com" id="emailInput" required>
       <button type="button" id="joinBtn">Join waitlist</button>
+    </div>
+    <div class="signup-options" id="signupOptions">
+      <label class="signup-option">
+        <input type="checkbox" name="pref" value="testing" checked>
+        <span class="option-check"></span>
+        <span class="option-text">Just tell me when it's available for testing</span>
+      </label>
+      <label class="signup-option">
+        <input type="checkbox" name="pref" value="updates">
+        <span class="option-check"></span>
+        <span class="option-text">Keep me updated on the project</span>
+      </label>
     </div>
     <div class="form-error" id="formError"></div>
     <div class="waitlist-note">No spam, ever. Just a heads up when you can try it.</div>
@@ -546,7 +501,7 @@
 
     // ── Google Sheets waitlist submission ──
     // REPLACE THIS URL with your Google Apps Script web app URL:
-    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ZuxUD_bkN0jqelMpXyDNJxTI5_Os1fW6Xp4CFttVwR07MjOiL-gotQOA96j6-eGFLA/exec';
 
     document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
     document.getElementById('emailInput').addEventListener('keydown', (e) => {
@@ -564,8 +519,8 @@
         return;
       }
 
-      // Gather checked interests
-      const checked = [...document.querySelectorAll('input[name="interest"]:checked')]
+      // Gather checked preferences
+      const checked = [...document.querySelectorAll('input[name="pref"]:checked')]
         .map(cb => cb.value);
 
       const btn = document.getElementById('joinBtn');
@@ -579,10 +534,8 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: email,
-            dog: checked.includes('dog') ? 'yes' : '',
-            baby: checked.includes('baby') ? 'yes' : '',
-            sensory: checked.includes('sensory') ? 'yes' : '',
-            curious: checked.includes('curious') ? 'yes' : '',
+            testing: checked.includes('testing') ? 'yes' : '',
+            updates: checked.includes('updates') ? 'yes' : '',
             timestamp: new Date().toISOString()
           })
         });
@@ -590,6 +543,7 @@
         // mode: no-cors means we can't read the response, but the request goes through
         document.getElementById('waitlistForm').innerHTML =
           '<div class="form-success">You\'re on the list! I\'ll be in touch soon. 💛</div>';
+        document.getElementById('signupOptions').style.display = 'none';
       } catch (err) {
         btn.textContent = 'Join waitlist';
         btn.disabled = false;

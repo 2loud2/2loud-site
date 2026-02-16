@@ -17,8 +17,6 @@
       --orange-deep: #B86A38;
       --blue: #8AAED4;
       --blue-deep: #7196BE;
-      --body-bg: #3D3554;
-      --body-bg-alt: #453C5E;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,7 +27,6 @@
       color: #fff;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
-      background: var(--body-bg);
     }
 
     @keyframes fadeUp {
@@ -37,7 +34,41 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── HERO — Purple ── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .section-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.7rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .section-inner h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.75rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .section-inner p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .section-inner p strong { color: #fff; }
+    .section-inner p em { color: rgba(255,255,255,0.95); }
+
     .hero {
       min-height: 50vh;
       display: flex;
@@ -48,7 +79,6 @@
       padding: 4rem 1.5rem 3rem;
       background: var(--purple);
       position: relative;
-      overflow: hidden;
     }
 
     .hero .back-link {
@@ -91,90 +121,7 @@
       animation: fadeUp 0.8s ease-out 0.2s both;
     }
 
-    /* ── CONTENT SECTIONS — unified dark base ── */
-    .content-section {
-      padding: 4rem 1.5rem;
-    }
-
-    .content-section:nth-child(even) {
-      background: var(--body-bg);
-    }
-
-    .content-section:nth-child(odd) {
-      background: var(--body-bg-alt);
-    }
-
-    .section-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .section-inner h2 {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.7rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
-      text-align: center;
-      color: #fff;
-    }
-
-    .section-inner h3 {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-top: 1.8rem;
-      margin-bottom: 0.75rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .section-inner p {
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .section-inner p strong {
-      color: rgba(255,255,255,0.95);
-    }
-
-    /* Accent dividers between major sections */
-    .accent-divider {
-      height: 3px;
-      width: 60px;
-      margin: 0 auto 2rem;
-      border-radius: 2px;
-      opacity: 0.6;
-    }
-    .accent-green { background: var(--green); }
-    .accent-orange { background: var(--orange); }
-    .accent-blue { background: var(--blue); }
-    .accent-purple { background: var(--purple); }
-
-    /* Pull quotes */
-    .pull-quote {
-      font-family: 'Fraunces', serif;
-      font-size: 1.15rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--blue);
-      border-left: 3px solid var(--blue);
-      padding-left: 1.25rem;
-      margin: 1.5rem 0;
-      line-height: 1.6;
-    }
-
-    .pull-quote.green { color: var(--green); border-color: var(--green); }
-    .pull-quote.green { color: #6da87a; border-color: #6da87a; }
-    .pull-quote.orange { color: var(--orange); border-color: var(--orange); }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--purple);
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
+    .cta-section { text-align: center; }
 
     .cta-section h2 {
       font-family: 'Fraunces', serif;
@@ -184,7 +131,7 @@
     }
 
     .cta-section p {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.75);
       max-width: 500px;
       margin: 0 auto 2rem;
       line-height: 1.7;
@@ -205,26 +152,24 @@
       transform: translateY(-1px);
     }
 
-    /* ── FOOTER ── */
     footer {
-      background: var(--body-bg);
+      background: var(--blue-deep);
       text-align: center;
       padding: 2rem 1.5rem;
       font-size: 0.85rem;
       color: rgba(255,255,255,0.35);
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .hero h1 { font-size: 1.8rem; }
       .section-inner h2 { font-size: 1.4rem; }
-      .content-section { padding: 3rem 1.5rem; }
+      section { padding: 3.5rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
+  <!-- Hero — Purple -->
   <section class="hero">
     <a href="index.html" class="back-link">&larr; back to 2Loud</a>
     <div class="hero-logo">2Loud</div>
@@ -232,109 +177,131 @@
     <p class="subtitle">A sound sensitivity layer for the internet — starting with a Chrome extension that makes movie night quieter.</p>
   </section>
 
-  <!-- The Problem -->
-  <section class="content-section">
+  <!-- The Problem — Green -->
+  <section style="background:var(--green);">
     <div class="section-inner">
-      <div class="accent-divider accent-green"></div>
       <h2>The Problem</h2>
       <p>There's no tool that lets you watch a movie without scaring your dog, waking your baby, or triggering your nervous system.</p>
-      <p>The technology to detect specific sounds in real time — screams, gunshots, doorbells, glass breaking — has existed for years. Google open-sourced a model called YAMNet that classifies 521 different audio events. Security companies use it to detect gunshots in public spaces. Smart doorbells use it to recognize knocking. The AI works.</p>
-      <p>But nobody has pointed it at the thing most of us do every day: watch something on a screen.</p>
-      <p>There are websites that crowdsource trigger warnings for movies. They'll tell you "this film contains gunshots at minute 34." Your options are: don't watch it, fast-forward, or brace yourself. That's not a solution. That's a workaround.</p>
-      <p><strong>I want to build the solution.</strong></p>
+      <p>The technology exists. Google open-sourced a model called YAMNet that classifies 521 different audio events. Security companies use it. Smart doorbells use it. But nobody has pointed it at the thing most of us do every day: watch something on a screen.</p>
+      <p>There are websites that crowdsource trigger warnings — "this film contains gunshots at minute 34." Your options are: don't watch it, fast-forward, or brace yourself. That's a workaround, not a solution.</p>
     </div>
   </section>
 
-  <!-- The Product -->
-  <section class="content-section">
+  <!-- The Product — Blue -->
+  <section style="background:var(--blue);">
     <div class="section-inner">
-      <div class="accent-divider accent-orange"></div>
       <h2>The Product</h2>
-      <p>2Loud starts as a browser extension. It sits between you and whatever you're watching — YouTube, Netflix, Disney+, anything that plays in your browser — and detects specific categories of sounds in real time. When it catches one, it ducks the volume for the duration of that sound, then brings it back up.</p>
-      <p>You open the extension, toggle on the sound categories you care about, adjust the sensitivity, and press play. That's it.</p>
-      <p>The audio never leaves your device. The processing happens locally, in your browser. There is no account to create. There is no data about you being sent anywhere. It just works.</p>
+      <p>A Chrome extension that sits between you and whatever you're streaming. It detects specific sounds in real time — doorbells, gunshots, screams, barking — and ducks the volume when it catches one, then brings it back up.</p>
+      <p>Toggle on the categories you care about. Adjust each one independently. Press play. That's it.</p>
+      <p>The audio never leaves your device. No accounts. No data sent anywhere. It just works.</p>
     </div>
   </section>
 
-  <!-- The Bigger Vision -->
-  <section class="content-section">
+  <!-- What the Data Reveals — Orange -->
+  <section style="background:var(--orange);">
     <div class="section-inner">
-      <div class="accent-divider accent-blue"></div>
-      <h2>The Bigger Vision</h2>
-      <p>Here's where it gets interesting.</p>
-      <p>The extension has a simple feedback mechanism: a thumbs up (the filter worked) and a thumbs down (it missed something, or it triggered on something it shouldn't have). That feedback is optional, anonymous, and contains no information about who you are.</p>
-      <p>But in aggregate, across thousands of users watching thousands of hours of content, that feedback generates something that doesn't exist anywhere in the world:</p>
-      <div class="pull-quote">A human-validated map of sound sensitivity across all media.</div>
-      <p>Every existing audio dataset answers the question: <em>"What is this sound?"</em> None of them answer: <em>"Does this sound bother a human?"</em></p>
-      <p>That's a fundamentally different question, and the answer to it is what makes our data unique.</p>
-    </div>
-  </section>
-
-  <!-- What the Data Reveals -->
-  <section class="content-section">
-    <div class="section-inner">
-      <div class="accent-divider accent-purple"></div>
       <h2>What the Data Reveals</h2>
-      <p>There are two types of feedback, and they tell different stories.</p>
-      <h3>Type 1: The human corrects the AI.</h3>
-      <p>The model flagged a sound at 87% confidence, and the user says "that wasn't a scream, that was laughter." This is accuracy data. It makes the classifier better. Valuable, but it's an improvement on something that exists.</p>
-      <h3>Type 2: The human flags something the AI didn't.</h3>
-      <p>The model detected nothing. But the user hit the button anyway — something bothered them. Maybe it was a sound the model wasn't trained on. Maybe it was a frequency. Maybe it wasn't a sound at all. Maybe it was a visual that triggered a sound response in their brain. A needle piercing skin. A car about to crash. A door about to slam.</p>
-      <div class="pull-quote green">That second type of data is something no research lab, no tech company, and no academic dataset has ever captured at scale.</div>
+      <p>The extension includes optional, anonymous feedback — thumbs up if the filter worked, thumbs down if it missed something. In aggregate, that feedback creates something that doesn't exist anywhere: <strong>a dataset of which sounds actually bother people, and where.</strong></p>
+      <p>Every existing audio dataset answers <em>"What is this sound?"</em> None of them answer <em>"Does this sound bother a human?"</em> That's a fundamentally different question.</p>
+      <p>Sometimes users will flag moments where the model detected nothing — meaning something bothered them that wasn't a classified sound. Maybe a frequency. Maybe a visual that triggered a sound response. That data has never been captured at scale.</p>
     </div>
   </section>
 
-  <!-- What I Will Not Build -->
-  <section class="content-section">
+  <!-- What I Will Not Build — Green Deep -->
+  <section style="background:var(--green-deep);">
     <div class="section-inner">
-      <div class="accent-divider accent-orange"></div>
       <h2>What I Will Not Build</h2>
-      <p>This is a conscious, founding decision, made before a single line of code was written.</p>
-      <p><strong>I will not collect demographic data.</strong> I don't want to know your age, gender, location, or anything about your identity.</p>
+      <p><strong>I will not collect demographic data.</strong> I don't want to know your age, gender, location, or whether you're using this for a dog, a baby, or PTSD.</p>
       <p><strong>I will not track your viewing history.</strong> What you watch is your business.</p>
-      <p><strong>I will not store personal behavioral profiles on my servers.</strong> Your settings, your categories, your sensitivity levels — that all lives on your device.</p>
       <p><strong>I will not sell the data to advertisers.</strong> Ever.</p>
-      <p>I know what the evil version of this company looks like. Collect demographic data, segment users by condition, tie behavioral profiles to viewing habits, and sell it to agencies who would pay a fortune for real-time psychographic data on people with PTSD, anxiety, and sensory processing differences. That pitch deck gets a VC meeting by Thursday.</p>
-      <p><strong>I'm not building that company.</strong></p>
+      <p>I know what the evil version of this company looks like. Segment users by condition, tie behavioral profiles to viewing habits, sell it to agencies. That pitch deck gets a VC meeting by Thursday. I'm not building that company.</p>
     </div>
   </section>
 
-  <!-- What I Will Build -->
-  <section class="content-section">
+  <!-- What I Will Build — Blue Deep -->
+  <section style="background:var(--blue-deep);">
     <div class="section-inner">
-      <div class="accent-divider accent-green"></div>
       <h2>What I Will Build (In Public)</h2>
-      <p><strong>The open dataset.</strong> Aggregated, anonymized detection data — which sounds get filtered most, detection accuracy per category, false positive rates by platform. Available to researchers, developers, and anyone who finds it useful.</p>
-      <p><strong>The content trigger map.</strong> A searchable index of media content showing trigger density by sound type. Type in a movie title, see a timeline of every detected trigger event. Parents check it before pressing play. Dog owners pick their Friday night film by how many doorbells are in it.</p>
-      <p><strong>The live dashboard.</strong> Real-time, always-updating view of what's being filtered across the network. Most flagged sound categories. Trending triggers. Accuracy improvements over time.</p>
-      <p><strong>The research API.</strong> Query access for academic and commercial use. A hearing aid company wants to know the most distressing frequency ranges across 10,000 hours of content? They query the API. Nobody downloads the raw data. Nobody gets individual-level anything.</p>
+      <p><strong>The open dataset.</strong> Aggregated, anonymized detection data — which sounds get filtered most, accuracy per category, false positive rates by platform.</p>
+      <p><strong>The content trigger map.</strong> Type in a movie title, see a timeline of every detected trigger. Parents check before pressing play. Dog owners pick films by doorbell count.</p>
+      <p><strong>The research API.</strong> Query access for academic and commercial use. Nobody downloads the raw data. Nobody gets individual-level anything.</p>
     </div>
   </section>
 
-  <!-- One More Honest Thing -->
-  <section class="content-section">
+  <!-- One More Honest Thing — Orange Deep -->
+  <section style="background:var(--orange-deep);">
     <div class="section-inner">
-      <div class="accent-divider accent-blue"></div>
       <h2>One More Honest Thing</h2>
-      <p>At some point, I will face a choice between money and mission. I might choose money. That's the world we live in. I'm not building this from a trust fund. I have bills. I have a life that costs what lives cost.</p>
-      <p>I'm not going to stand here and say "I will never compromise." People who say that are either lying or haven't been tested yet.</p>
-      <p>What I can say is this: I've made the architectural decisions now — before there are users, before there's revenue, before there's pressure — so that when the hard moment comes, the worst options aren't available to me. I can't sell your data because I don't have it. I can't sell the company because it's a non-profit. I can't start tracking you because the system has no place to store that information.</p>
-      <div class="pull-quote orange">The decisions I made tonight took the worst compromises off the table before I was ever tempted. That was deliberate.</div>
-      <p>What I'm giving you is my intentions, my architecture, and my reasoning — published publicly, timestamped, before any of those moments arrive. If I ever deviate from what's written here, you'll have this document to hold me to it. That's the deal.</p>
+      <p>At some point, I will face a choice between money and mission. I might choose money. I have bills. I have a life that costs what lives cost.</p>
+      <p>But I've made the architectural decisions now — before there are users, before there's pressure — so the worst options aren't available to me. I can't sell your data because I don't have it. I can't sell the company because it's a non-profit. I can't start tracking you because the system has no place to store that information.</p>
+      <p><strong>The structure protects the mission even when I'm tired, or broke, or being offered something that looks really good on paper.</strong></p>
     </div>
   </section>
 
-  <!-- Contribute or Don't -->
-  <section class="cta-section">
-    <h2>Contribute or don't.</h2>
-    <p>This is public because I want it to be. The idea is here. The vision is here. The ethical framework is here. If you want to build something adjacent, go ahead. If you want to help build this specific thing, reach out. If you want to tell me this already exists and I missed it, please do.</p>
-    <p>We're not protecting this with secrecy. We're protecting it by being the ones who build it right.</p>
-    <a href="index.html" class="cta-link">Join the waitlist</a>
+  <!-- Waitlist — Green -->
+  <section style="background:var(--green); text-align:center;">
+    <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;margin-bottom:1rem;">Want in early?</h2>
+    <p style="color:rgba(255,255,255,0.8);max-width:440px;margin:0 auto 2rem;line-height:1.6;">Drop your email and I'll let you know when it's ready.</p>
+    <div style="display:flex;gap:0.5rem;max-width:400px;margin:0 auto;" id="waitlistForm">
+      <input type="email" placeholder="your@email.com" id="emailInput" required style="flex:1;padding:0.8rem 1rem;border-radius:10px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;">
+      <button type="button" id="joinBtn" style="padding:0.8rem 1.4rem;border:none;border-radius:10px;background:rgba(255,255,255,0.2);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;cursor:pointer;white-space:nowrap;">Join waitlist</button>
+    </div>
+    <div style="max-width:400px;margin:1rem auto 0;text-align:left;" id="signupOptions">
+      <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;padding:0.4rem 0;">
+        <input type="checkbox" name="pref" value="testing" checked style="accent-color:#fff;">
+        <span style="font-size:0.85rem;color:rgba(255,255,255,0.7);">Just tell me when it's available for testing</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;padding:0.4rem 0;">
+        <input type="checkbox" name="pref" value="updates" style="accent-color:#fff;">
+        <span style="font-size:0.85rem;color:rgba(255,255,255,0.7);">Keep me updated on the project</span>
+      </label>
+    </div>
+    <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:1rem;">No spam, ever. Just a heads up when you can try it.</div>
   </section>
 
   <footer>
     2Loud — February 14, 2026. Valentine's Day, technically.
   </footer>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ZuxUD_bkN0jqelMpXyDNJxTI5_Os1fW6Xp4CFttVwR07MjOiL-gotQOA96j6-eGFLA/exec';
+
+    document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
+    document.getElementById('emailInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitWaitlist();
+    });
+
+    async function submitWaitlist() {
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        document.getElementById('emailInput').style.borderColor = 'rgba(255,255,255,0.6)';
+        document.getElementById('emailInput').focus();
+        return;
+      }
+      const checked = [...document.querySelectorAll('input[name="pref"]:checked')].map(cb => cb.value);
+      const btn = document.getElementById('joinBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            testing: checked.includes('testing') ? 'yes' : '',
+            updates: checked.includes('updates') ? 'yes' : '',
+            timestamp: new Date().toISOString()
+          })
+        });
+        document.getElementById('waitlistForm').innerHTML = '<div style="font-size:1.1rem;color:#fff;">You\'re on the list! I\'ll be in touch soon. 💛</div>';
+        document.getElementById('signupOptions').style.display = 'none';
+      } catch (err) {
+        btn.textContent = 'Join waitlist';
+        btn.disabled = false;
+      }
+    }
+  </script>
 
 </body>
 </html>
