@@ -182,59 +182,27 @@
     <div class="section-inner">
       <h2>The Problem</h2>
       <p>There's no tool that lets you watch a movie without scaring your dog, waking your baby, or triggering your nervous system.</p>
-      <p>The technology exists. Google open-sourced a model called YAMNet that classifies 521 different audio events. Security companies use it. Smart doorbells use it. But nobody has pointed it at the thing most of us do every day: watch something on a screen.</p>
-      <p>There are websites that crowdsource trigger warnings — "this film contains gunshots at minute 34." Your options are: don't watch it, fast-forward, or brace yourself. That's a workaround, not a solution.</p>
+      <p>The technology exists. Google open-sourced a model that classifies 521 different audio events. Security companies use it. Smart doorbells use it. But nobody has pointed it at the thing most of us do every day: watch something on a screen.</p>
     </div>
   </section>
 
-  <!-- The Product — Blue -->
+  <!-- How It Works — Blue -->
   <section style="background:var(--blue);">
     <div class="section-inner">
-      <h2>The Product</h2>
+      <h2>How It Works</h2>
       <p>A Chrome extension that sits between you and whatever you're streaming. It detects specific sounds in real time — doorbells, gunshots, screams, barking — and ducks the volume when it catches one, then brings it back up.</p>
       <p>Toggle on the categories you care about. Adjust each one independently. Press play. That's it.</p>
-      <p>The audio never leaves your device. No accounts. No data sent anywhere. It just works.</p>
+      <p>The audio never leaves your device. There's no account to create, no data sent anywhere, and no way for me to know what you're watching. The processing happens entirely in your browser.</p>
     </div>
   </section>
 
-  <!-- What the Data Reveals — Orange -->
+  <!-- What Happens Over Time — Orange -->
   <section style="background:var(--orange);">
     <div class="section-inner">
-      <h2>What the Data Reveals</h2>
-      <p>The extension includes optional, anonymous feedback — thumbs up if the filter worked, thumbs down if it missed something. In aggregate, that feedback creates something that doesn't exist anywhere: <strong>a dataset of which sounds actually bother people, and where.</strong></p>
-      <p>Every existing audio dataset answers <em>"What is this sound?"</em> None of them answer <em>"Does this sound bother a human?"</em> That's a fundamentally different question.</p>
-      <p>Sometimes users will flag moments where the model detected nothing — meaning something bothered them that wasn't a classified sound. Maybe a frequency. Maybe a visual that triggered a sound response. That data has never been captured at scale.</p>
-    </div>
-  </section>
-
-  <!-- What I Will Not Build — Green Deep -->
-  <section style="background:var(--green-deep);">
-    <div class="section-inner">
-      <h2>What I Will Not Build</h2>
-      <p><strong>I will not collect demographic data.</strong> I don't want to know your age, gender, location, or whether you're using this for a dog, a baby, or PTSD.</p>
-      <p><strong>I will not track your viewing history.</strong> What you watch is your business.</p>
-      <p><strong>I will not sell the data to advertisers.</strong> Ever.</p>
-      <p>I know what the evil version of this company looks like. Segment users by condition, tie behavioral profiles to viewing habits, sell it to agencies. That pitch deck gets a VC meeting by Thursday. I'm not building that company.</p>
-    </div>
-  </section>
-
-  <!-- What I Will Build — Blue Deep -->
-  <section style="background:var(--blue-deep);">
-    <div class="section-inner">
-      <h2>What I Will Build (In Public)</h2>
-      <p><strong>The open dataset.</strong> Aggregated, anonymized detection data — which sounds get filtered most, accuracy per category, false positive rates by platform.</p>
-      <p><strong>The content trigger map.</strong> Type in a movie title, see a timeline of every detected trigger. Parents check before pressing play. Dog owners pick films by doorbell count.</p>
-      <p><strong>The research API.</strong> Query access for academic and commercial use. Nobody downloads the raw data. Nobody gets individual-level anything.</p>
-    </div>
-  </section>
-
-  <!-- One More Honest Thing — Orange Deep -->
-  <section style="background:var(--orange-deep);">
-    <div class="section-inner">
-      <h2>One More Honest Thing</h2>
-      <p>At some point, I will face a choice between money and mission. I might choose money. I have bills. I have a life that costs what lives cost.</p>
-      <p>But I've made the architectural decisions now — before there are users, before there's pressure — so the worst options aren't available to me. I can't sell your data because I don't have it. I structured this as a non-profit so I can't sell the company either. And I can't start tracking you because the system has no place to store that information.</p>
-      <p><strong>The structure protects the mission even when I'm tired, or broke, or being offered something that looks really good on paper.</strong></p>
+      <h2>What Happens Over Time</h2>
+      <p>The extension includes optional, anonymous feedback — a thumbs up if the filter worked, a thumbs down if it missed something. No account, no identity, just a signal.</p>
+      <p>Over time, those signals add up. The model gets better at catching the sounds that actually bother people. And the patterns that emerge — which sounds get flagged most, which moments in which films — could eventually become something useful for researchers, parents, and anyone who wants to know what they're about to watch before they press play.</p>
+      <p>That's the longer vision. But it starts with the extension just working.</p>
     </div>
   </section>
 
