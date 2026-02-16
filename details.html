@@ -18,6 +18,8 @@
       --orange-deep: #B86A38;
       --blue: #8AAED4;
       --blue-deep: #7196BE;
+      --body-bg: #3D3554;
+      --body-bg-alt: #453C5E;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,159 +28,27 @@
     body {
       font-family: 'DM Sans', sans-serif;
       color: #fff;
-      line-height: 1.7;
+      line-height: 1.75;
       -webkit-font-smoothing: antialiased;
+      background: var(--body-bg);
     }
 
-    section {
-      padding: 5rem 1.5rem;
-    }
-
-    .section-inner {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .section-inner h2 {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
-      text-align: center;
-    }
-
-    .section-inner h3 {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: rgba(255,255,255,0.9);
-      text-align: center;
-    }
-
-    .section-inner p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 1.25rem;
-      line-height: 1.8;
-    }
-
-    .section-inner p:last-child {
-      margin-bottom: 0;
-    }
-
-    .section-inner em {
-      font-style: italic;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .section-inner strong {
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .section-inner ul {
-      text-align: left;
-      list-style: none;
-      padding: 0;
-      margin-bottom: 1.25rem;
-    }
-
-    .section-inner ul li {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.85);
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      line-height: 1.7;
-    }
-
-    .section-inner ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .numbered-list {
-      text-align: left;
-      list-style: none;
-      padding: 0;
-      counter-reset: item;
-      margin-bottom: 1.25rem;
-    }
-
-    .numbered-list li {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.85);
-      padding: 0.6rem 0;
-      padding-left: 2rem;
-      position: relative;
-      line-height: 1.7;
-      counter-increment: item;
-    }
-
-    .numbered-list li::before {
-      content: counter(item) ".";
-      position: absolute;
-      left: 0;
-      color: rgba(255,255,255,0.4);
-      font-weight: 600;
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    .comparison-table th {
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.7);
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .comparison-table td {
-      padding: 0.65rem 1rem;
-      color: rgba(255,255,255,0.8);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .comparison-table tr:last-child td {
-      border-bottom: none;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ── HERO — Purple ── */
     .hero {
-      min-height: 60vh;
+      min-height: 50vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 4rem 1.5rem 3rem;
       background: var(--purple);
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -15%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-      pointer-events: none;
     }
 
     .hero .back-link {
@@ -190,15 +60,12 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-
-    .hero .back-link:hover {
-      color: rgba(255,255,255,0.8);
-    }
+    .hero .back-link:hover { color: rgba(255,255,255,0.8); }
 
     .hero-logo {
       font-family: 'Fraunces', serif;
       font-weight: 700;
-      font-size: 2.5rem;
+      font-size: 2rem;
       letter-spacing: -0.03em;
       color: rgba(255,255,255,0.4);
       margin-bottom: 1.5rem;
@@ -208,75 +75,221 @@
     .hero h1 {
       font-family: 'Fraunces', serif;
       font-weight: 700;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       letter-spacing: -0.02em;
-      max-width: 580px;
+      max-width: 600px;
       line-height: 1.2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       animation: fadeUp 0.8s ease-out 0.1s both;
     }
 
     .hero .subtitle {
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.65);
-      max-width: 480px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
       line-height: 1.7;
       animation: fadeUp 0.8s ease-out 0.2s both;
     }
 
-    /* ── Sections ── */
-    .tech { background: var(--green); }
-    .how { background: var(--orange); }
-    .legal { background: var(--blue-deep); }
-    .landscape { background: var(--purple-deep); }
-    .roadmap { background: var(--green-deep); }
-    .insights { background: var(--orange-deep); }
-    .decisions { background: var(--blue); }
-    .what-not { background: var(--purple); }
-    .sessions { background: var(--green); }
-    .risks { background: var(--orange); }
+    /* ── CONTENT SECTIONS — unified palette ── */
+    .content-section {
+      padding: 4rem 1.5rem;
+    }
 
-    .closing-section {
-      background: var(--purple-deep);
+    .content-section:nth-child(even) {
+      background: var(--body-bg);
+    }
+
+    .content-section:nth-child(odd) {
+      background: var(--body-bg-alt);
+    }
+
+    .section-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .section-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.7rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
       text-align: center;
     }
 
-    .closing-section .section-inner {
-      max-width: 540px;
+    .section-inner h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: rgba(255,255,255,0.9);
+      text-align: center;
     }
 
-    .closing-section h2 {
-      font-size: 2rem;
-    }
-
-    .closing-section p {
+    .section-inner p {
       color: rgba(255,255,255,0.75);
+      margin-bottom: 1rem;
+      font-size: 1rem;
     }
 
-    /* ── Footer ── */
+    .section-inner p strong {
+      color: rgba(255,255,255,0.95);
+    }
+
+    /* Accent dividers */
+    .accent-divider {
+      height: 3px;
+      width: 60px;
+      margin: 0 auto 2rem;
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+    .accent-green { background: var(--green); }
+    .accent-orange { background: var(--orange); }
+    .accent-blue { background: var(--blue); }
+    .accent-purple { background: var(--purple); }
+
+    /* Pull quotes */
+    .pull-quote {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blue);
+      border-left: 3px solid var(--blue);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0;
+      line-height: 1.6;
+    }
+    .pull-quote.green { color: #6da87a; border-color: #6da87a; }
+    .pull-quote.orange { color: var(--orange); border-color: var(--orange); }
+
+    /* Tables */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .comparison-table th {
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table td {
+      padding: 0.65rem 1rem;
+      color: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Inline lists */
+    .data-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .data-list li {
+      color: rgba(255,255,255,0.75);
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .data-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: rgba(255,255,255,0.3);
+      font-weight: 600;
+    }
+
+    /* Phase items */
+    .phase {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .phase-label {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .phase p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--purple);
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .cta-link {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .cta-link:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-1px);
+    }
+
     footer {
+      background: var(--body-bg);
       text-align: center;
       padding: 2rem 1.5rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: rgba(255,255,255,0.35);
-      background: var(--purple-deep);
     }
 
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      .section-inner h2 { font-size: 1.4rem; }
+      .content-section { padding: 3rem 1.5rem; }
+      .comparison-table { font-size: 0.85rem; }
+      .comparison-table th, .comparison-table td { padding: 0.5rem 0.6rem; }
     }
   </style>
 </head>
@@ -284,277 +297,189 @@
 
   <!-- Hero -->
   <section class="hero">
-    <a href="vision.html" class="back-link">&larr; back to the vision</a>
+    <a href="index.html" class="back-link">&larr; back to 2Loud</a>
     <div class="hero-logo">2Loud</div>
-    <h1>The details.</h1>
-    <p class="subtitle">Everything under the hood — the technology, the roadmap, the decisions, and why they were made.</p>
+    <h1>The Details</h1>
+    <p class="subtitle">Everything under the hood — the technology, the architecture decisions, the roadmap, and the hard questions. This page is for the people who want to look closely.</p>
   </section>
 
-  <!-- Technology — Green -->
-  <section class="tech">
-    <div class="section-inner fade-in">
-      <h2>How the technology works</h2>
-      <p>2Loud uses Google's <strong>YAMNet</strong> model — a pre-trained audio classification model that recognizes 527 sound categories. It runs locally in the browser via <strong>TensorFlow.js</strong>. No server, no cloud, no external processing.</p>
-      <p>The extension taps into the browser's <strong>Web Audio API</strong> — the same infrastructure that powers equalizers and bass boost extensions. It intercepts the audio stream from whatever you're watching, routes it through the model for classification, and adjusts the volume before it reaches your speakers.</p>
-      <p>A short buffer gives the model time to classify sounds before they play. When it detects a trigger — a doorbell, a gunshot, a scream — it smoothly lowers the volume and fades it back up after the sound passes.</p>
-      <p>The model doesn't listen through your microphone. It reads the audio data flowing from the video player. Your volume can be at zero and the model is still processing. It doesn't pick up your dog barking in the other room. It only processes what's coming from the browser tab.</p>
+  <!-- Technology -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-green"></div>
+      <h2>The Technology</h2>
+      <p>2Loud uses Google's YAMNet audio classification model, running locally in your browser via TensorFlow.js. YAMNet was trained on AudioSet — over 2 million human-labeled 10-second sound clips covering 521 audio event classes.</p>
+      <p>The extension captures audio from your active tab using Chrome's Web Audio API. That audio is processed in real time through YAMNet, which outputs confidence scores for each of its 521 classes. When a trigger sound exceeds the user's set threshold, the extension ducks the volume using a GainNode — no audio is ever recorded, stored, or transmitted.</p>
+      <p>Everything happens on your machine. The model weights are downloaded once and cached. There is no server call during operation. The only network request the extension ever makes is an optional, anonymous feedback event if you choose to report a miss or false alarm.</p>
     </div>
   </section>
 
-  <!-- How the filter works — Orange -->
-  <section class="how">
-    <div class="section-inner fade-in">
-      <h2>It's just a filter</h2>
-      <p>Audio comes out of the video player, passes through 2Loud, and continues to your speakers. Same way an equalizer works. Same plumbing, smarter logic.</p>
-      <p>The only difference is that instead of "cut everything below 200Hz," it's "cut everything the model thinks is a scream."</p>
+  <!-- How the Filter Works -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-orange"></div>
+      <h2>How the Filter Actually Works</h2>
+      <p>Audio comes through your browser tab. The extension sits between the source and your speakers, processing in real time:</p>
+      <p><strong>1. Capture.</strong> Chrome's tabCapture API routes the tab's audio stream to the extension.</p>
+      <p><strong>2. Buffer.</strong> A short pre-buffer (adjustable) delays the audio slightly, giving the model time to classify before the sound reaches you. Think of it like broadcast TV delay.</p>
+      <p><strong>3. Classify.</strong> YAMNet processes audio frames and returns confidence scores per class. The extension maps specific classes to user-defined trigger categories (doorbell, gunshot, screaming, barking).</p>
+      <p><strong>4. Duck.</strong> When a trigger is detected above the user's sensitivity threshold, the GainNode smoothly reduces volume to the level set for that trigger. When the sound passes, volume fades back up.</p>
+      <p>Each trigger has its own independent volume slider — screams at 50%, gunshots at 0%, doorbells at 0%. It's not a binary mute. It's a sound mixer for sensitivity.</p>
     </div>
   </section>
 
-  <!-- Roadmap — Green Deep -->
-  <section class="roadmap">
-    <div class="section-inner fade-in">
-      <h2>Development roadmap</h2>
-
-      <h3>Phase 1 — Proof of concept</h3>
-      <ul>
-        <li>Chrome extension that captures browser audio</li>
-        <li>YAMNet integration via TensorFlow.js for real-time classification</li>
-        <li>Basic volume lowering when a target sound is detected</li>
-        <li>Testing on YouTube first</li>
-      </ul>
-
-      <h3>Phase 2 — Core product</h3>
-      <ul>
-        <li>UI for selecting which sound categories to filter</li>
-        <li>Adjustable sensitivity and lowering intensity</li>
-        <li>Feedback mechanism (correct/incorrect classification)</li>
-        <li>Multi-platform testing (Netflix, Disney+, Hulu)</li>
-        <li>Chrome Web Store listing</li>
-      </ul>
-
-      <h3>Phase 3 — Dataset & community</h3>
-      <ul>
-        <li>Anonymous feedback aggregation pipeline</li>
-        <li>Public dashboard showing dataset growth and accuracy</li>
-        <li>Community-driven sound category tagging</li>
-        <li>Outreach to researchers and accessibility organizations</li>
-        <li>First public dataset release</li>
-      </ul>
-
-      <h3>Phase 4 — Expansion</h3>
-      <ul>
-        <li>Firefox extension</li>
-        <li>Model fine-tuning based on user feedback</li>
-        <li>Additional sound categories from community requests</li>
-        <li>Research partnerships</li>
-        <li>Academic paper on dataset findings</li>
-      </ul>
+  <!-- Roadmap -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-blue"></div>
+      <h2>Roadmap</h2>
+      <div class="phase">
+        <div class="phase-label">Phase 1 — Proof of Concept</div>
+        <p>Chrome extension with local YAMNet classification, four trigger categories, per-trigger volume sliders, basic popup UI. Testing with friends. This is where we are now.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Phase 2 — Feedback Loop</div>
+        <p>Add thumbs up/down feedback mechanism. Anonymous event logging (sound category, confidence score, user verdict, content timestamp). No accounts, no tracking. Begin building the dataset.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Phase 3 — Content Trigger Map</div>
+        <p>Searchable index of media content by trigger density. Type in a movie, see the trigger timeline. Parents check before pressing play. Dog owners pick films by doorbell count.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Phase 4 — Research Infrastructure</div>
+        <p>Session codes for researchers. Live dashboard. Public API for academic and commercial queries. Open dataset release.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Phase 5 — Scale</div>
+        <p>Firefox extension. Desktop app with system-wide audio processing. Partnerships with streaming platforms. Impact fund conversations. The extension becomes infrastructure.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Session Codes — Green -->
-  <section class="sessions">
-    <div class="section-inner fade-in">
-      <h2>Session codes</h2>
-      <p>An optional feature that bridges consumer product and research tool. A researcher, therapist, or educator can generate a <strong>session code</strong> — a short, temporary identifier tied to a study, not a person.</p>
-      <p>Participants enter the code in the extension. Their feedback flows into that study's bucket instead of the general pool. The researcher sees aggregate data — which sounds were flagged, confidence levels, misses and false alarms — without knowing anything about individual participants.</p>
-      <p>No accounts. No emails. No logins. Just a code that connects data points to a study.</p>
+  <!-- Session Codes -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-purple"></div>
+      <h2>Session Codes: Research Without Surveillance</h2>
+      <p>A researcher, therapist, or study coordinator generates a session code — a short, temporary identifier tied to a study, not a person. Participants enter the code in the extension before watching. Their anonymous feedback events get tagged to that session instead of flowing into the general pool.</p>
+      <p>A misophonia researcher creates a session, shares the code with 200 participants. Each participant watches the assigned content. The researcher sees the aggregate: which sounds were flagged, at what confidence, how many misses and false alarms.</p>
+      <p>No participant creates an account. No emails. No names. The session code links data to a study, not to a person. One participant could enter the code on three different devices and you'd never know it was the same person.</p>
+      <div class="pull-quote green">This turns the extension into research infrastructure. Not as a side effect — as a deliberate, designed capability.</div>
     </div>
   </section>
 
-  <!-- The Bigger Picture — Orange Deep -->
-  <section class="insights">
-    <div class="section-inner fade-in">
-      <h2>The chain of insights</h2>
-      <p>2Loud rests on a set of ideas that are individually obvious but collectively novel:</p>
-      <ol class="numbered-list">
-        <li>The same AI used for security surveillance (sound classification) can be redirected at media consumption to help people rather than monitor them.</li>
-        <li>A user feedback loop on AI accuracy naturally creates a dataset that nobody else can build.</li>
-        <li>That dataset captures something science hasn't measured: real-time human sensitivity to classified sounds in media, at scale.</li>
-        <li>All of this can be accomplished without knowing a single thing about the person using the tool.</li>
-        <li>A non-profit structure makes every piece of this stronger, not weaker.</li>
-        <li>The legal framework has existed since 2005, validated by two decades of ClearPlay's operation.</li>
-      </ol>
-      <p>The technical pieces all exist independently. Let's connect them.</p>
+  <!-- Chain of Insights -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-green"></div>
+      <h2>The Chain of Insights</h2>
+      <p><strong>Layer 1: The extension works.</strong> Trigger sounds are detected and filtered. Users get a quieter experience. That's the consumer product.</p>
+      <p><strong>Layer 2: Accuracy data.</strong> Thumbs up/down feedback reveals where the model is right and wrong across different platforms, content types, and audio encodings. This makes the classifier better.</p>
+      <p><strong>Layer 3: Sensitivity calibration.</strong> The gap between model confidence and human reaction maps to a sensitivity spectrum. An 87% confidence gunshot that humans consistently flag as "not bothering me" tells a different story than a 60% confidence doorbell that everyone flags as a miss.</p>
+      <p><strong>Layer 4: Novel sound discovery.</strong> When users hit "missed" at timestamps where the model detected nothing, they're revealing sounds — or experiences — that no dataset has captured. Sounds below classification thresholds. Cross-modal triggers. Frequencies. Textures.</p>
+      <p><strong>Layer 5: The unknown.</strong> With enough data, patterns will emerge that nobody predicted. That's the point of open research infrastructure — you don't have to know what you'll find. You have to build the system that can find it.</p>
     </div>
   </section>
 
-  <!-- Key Decisions — Blue -->
-  <section class="decisions">
-    <div class="section-inner fade-in">
-      <h2>Key decisions made</h2>
+  <!-- Key Decisions -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-orange"></div>
+      <h2>Key Decisions</h2>
       <table class="comparison-table">
-        <tr>
-          <th>Decision</th>
-          <th>Why</th>
-        </tr>
-        <tr>
-          <td><strong>Chrome extension</strong></td>
-          <td>Works across all streaming platforms without partnerships or API access. Browser is the universal layer.</td>
-        </tr>
-        <tr>
-          <td><strong>Local processing only</strong></td>
-          <td>Privacy is non-negotiable. No audio leaves the device. Also ensures Family Movie Act compliance.</td>
-        </tr>
-        <tr>
-          <td><strong>YAMNet</strong></td>
-          <td>Pre-trained on 527 categories, runs in-browser via TensorFlow.js, open source, well-documented.</td>
-        </tr>
-        <tr>
-          <td><strong>Non-profit</strong></td>
-          <td>Protects the mission permanently. Enables open data. Eliminates monetization pressure on privacy.</td>
-        </tr>
-        <tr>
-          <td><strong>AI classification over human annotation</strong></td>
-          <td>Works on everything instantly. No catalog limits, no lag between release and coverage.</td>
-        </tr>
-        <tr>
-          <td><strong>AI-assisted development</strong></td>
-          <td>Founder has no coding background. AI tools make it possible to build the MVP without hiring engineers.</td>
-        </tr>
-        <tr>
-          <td><strong>No user identity, ever</strong></td>
-          <td>User settings live locally. Only anonymous event-level feedback is collected. A conscious founding decision.</td>
-        </tr>
+        <thead>
+          <tr><th>Decision</th><th>What We Chose</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Entity structure</td><td>501(c)(3) non-profit</td><td>Can't sell the company. Mission stays.</td></tr>
+          <tr><td>User accounts</td><td>None</td><td>No user table means no data to sell.</td></tr>
+          <tr><td>Audio processing</td><td>Local only</td><td>Audio never leaves the device.</td></tr>
+          <tr><td>Feedback collection</td><td>Anonymous events</td><td>No session linking, no device IDs.</td></tr>
+          <tr><td>Use case tracking</td><td>None (behavior reveals it)</td><td>Avoid collecting health data.</td></tr>
+          <tr><td>Dataset access</td><td>Open (aggregated)</td><td>Insights public, raw data stays with us.</td></tr>
+          <tr><td>Revenue model</td><td>API licensing + grants</td><td>Value from research, not from users.</td></tr>
+        </tbody>
       </table>
     </div>
   </section>
 
-  <!-- Risks — Orange -->
-  <section class="risks">
-    <div class="section-inner fade-in">
-      <h2>Known risks</h2>
-      <table class="comparison-table">
-        <tr>
-          <th>Risk</th>
-          <th>Severity</th>
-          <th>Mitigation</th>
-        </tr>
-        <tr>
-          <td>YAMNet accuracy on real streaming audio</td>
-          <td>High</td>
-          <td>User feedback loop improves classification over time</td>
-        </tr>
-        <tr>
-          <td>Audio buffer creates noticeable delay</td>
-          <td>Medium</td>
-          <td>User testing to find acceptable latency; video sync adjustment</td>
-        </tr>
-        <tr>
-          <td>Users may not provide enough feedback</td>
-          <td>Medium</td>
-          <td>Frictionless one-click feedback; community engagement</td>
-        </tr>
-        <tr>
-          <td>Streaming platforms could block the extension</td>
-          <td>Medium</td>
-          <td>Web Audio API is a browser standard, not platform-specific</td>
-        </tr>
-        <tr>
-          <td>Abuse potential (surveillance, censorship)</td>
-          <td>Low</td>
-          <td>Extension only lowers volume — doesn't record, transmit, or store audio</td>
-        </tr>
-      </table>
+  <!-- Known Risks -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-blue"></div>
+      <h2>Known Risks and Honest Limitations</h2>
+      <p><strong>The first fraction of a sound gets through.</strong> The AI needs to hear a sound before it can classify it. The pre-buffer helps, but it adds latency. For dogs that react to the very onset, this might not be fast enough. Your feedback determines whether we prioritize this.</p>
+      <p><strong>False positives will happen.</strong> The model will sometimes duck volume during normal dialogue because it thought someone was screaming. Every false alarm report tells us where to tune.</p>
+      <p><strong>Platform variability.</strong> Audio encoding differs across Netflix, YouTube, Disney+, and others. Model accuracy may vary by platform. We won't know the full picture until users are testing across all of them.</p>
+      <p><strong>Streaming DRM restrictions.</strong> Some platforms may restrict the audio capture APIs the extension relies on. This is a technical risk that could limit which services work. We're transparent about it.</p>
+      <p><strong>Sustainability.</strong> A non-profit with no ad revenue needs alternative funding. Grants, API licensing, and donations are the plan. If those don't materialize, the project faces the same pressure as any unfunded effort.</p>
     </div>
   </section>
 
-  <!-- What This Is Not — Purple -->
-  <section class="what-not">
-    <div class="section-inner fade-in">
-      <h2>What 2Loud is not</h2>
-      <ul>
-        <li>Not an audio editor. It doesn't separate tracks. It lowers volume when trigger sounds are classified.</li>
-        <li>Not a censorship tool. It gives users control over their own audio environment.</li>
-        <li>Not a surveillance tool. It processes audio locally, stores nothing, transmits no audio.</li>
-        <li>Not a startup with an exit strategy. It's a non-profit built to serve a need and produce open data.</li>
-        <li>Not a finished product. As of this document, it's a working prototype being tested by friends.</li>
+  <!-- True Transparency -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-purple"></div>
+      <h2>True Transparency: "We Can't," Not "We Won't"</h2>
+      <p>Most companies publish a privacy policy that says "we won't sell your data." Those are promises. Promises can be broken.</p>
+      <p>We're publishing the architecture instead.</p>
+      <h3>What you'd need to identify a user:</h3>
+      <ul class="data-list">
+        <li>IP address</li>
+        <li>Device fingerprint or unique identifier</li>
+        <li>Account identity (email, login, name)</li>
+        <li>Session ID linking multiple events</li>
+        <li>Viewing history tied to a session</li>
+        <li>Time of day (user's local time)</li>
+        <li>Location or timezone</li>
+        <li>Demographic information</li>
+        <li>Behavioral profile stored server-side</li>
       </ul>
+      <h3>What we actually collect:</h3>
+      <ul class="data-list">
+        <li>Sound category (e.g., scream, doorbell)</li>
+        <li>Model confidence score (e.g., 87%)</li>
+        <li>User feedback (miss, false alarm, or none)</li>
+        <li>Timestamp within the content</li>
+        <li>Content identifier (title or URL)</li>
+        <li>Platform (YouTube, Netflix, etc.)</li>
+      </ul>
+      <div class="pull-quote orange">The gap between these two sets is the entire point. There are approximately seven layers of data between what we collect and what you'd need to identify a person — and we don't collect any of them.</div>
+      <p>This isn't a policy decision that a future board could reverse. It's an architecture decision. The system doesn't have a user table. There's no field to put your name in even if someone wanted to.</p>
     </div>
   </section>
 
-  <!-- Legal Precedent — Blue -->
-  <section class="legal">
-    <div class="section-inner fade-in">
-      <h2>Legal precedent</h2>
-      <p>In 2005, Congress passed the <strong>Family Entertainment and Copyright Act</strong> (also called the Family Movie Act), which explicitly states that software enabling viewers to mute or skip parts of a movie does not violate copyright — as long as no fixed copy of the altered version is created.</p>
-      <p>This law was passed after Hollywood studios sued <strong>ClearPlay</strong>, a Chrome extension that filters profanity, violence, and nudity from streaming movies using human-annotated timestamps. ClearPlay won. It has operated legally for over two decades.</p>
-      <p>2Loud works the same way — modifying audio playback in real time, in the browser, for private home use, without creating copies. If anything, 2Loud is less legally complex than ClearPlay, because it classifies sound categories generically without knowing anything about the specific content being played.</p>
-    </div>
-  </section>
-
-  <!-- Competitive Landscape — Purple Deep -->
-  <section class="landscape">
-    <div class="section-inner fade-in">
-      <h2>How 2Loud compares to ClearPlay</h2>
+  <!-- Legal Precedent -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="accent-divider accent-green"></div>
+      <h2>Legal Precedent</h2>
+      <p>The Family Movie Act of 2005 established that technology which allows viewers to skip or mute content during home viewing does not violate copyright, as long as it doesn't create an altered copy of the work.</p>
+      <p>ClearPlay, which filters objectionable content from movies, operated under this framework. 2Loud applies the same principle: we're modifying the viewer's real-time experience, not the content itself. No altered copies are created, stored, or distributed.</p>
       <table class="comparison-table">
-        <tr>
-          <th></th>
-          <th>ClearPlay</th>
-          <th>2Loud</th>
-        </tr>
-        <tr>
-          <td><strong>Classification</strong></td>
-          <td>Human editors annotate each title</td>
-          <td>AI classifies sounds in real time</td>
-        </tr>
-        <tr>
-          <td><strong>Coverage</strong></td>
-          <td>Limited to processed titles</td>
-          <td>Works on anything in the browser</td>
-        </tr>
-        <tr>
-          <td><strong>What's filtered</strong></td>
-          <td>Narrative content (profanity, nudity, violence)</td>
-          <td>Acoustic events (gunshots, screams, doorbells)</td>
-        </tr>
-        <tr>
-          <td><strong>Audience</strong></td>
-          <td>Families filtering objectionable content</td>
-          <td>Dog owners, parents, sensory-sensitive people</td>
-        </tr>
-        <tr>
-          <td><strong>Data model</strong></td>
-          <td>Proprietary filter library</td>
-          <td>Open dataset</td>
-        </tr>
-        <tr>
-          <td><strong>Cost</strong></td>
-          <td>$7.99/month</td>
-          <td>Free, pay-what-you-want</td>
-        </tr>
-        <tr>
-          <td><strong>Availability</strong></td>
-          <td>Days to weeks after release</td>
-          <td>Instant</td>
-        </tr>
+        <thead>
+          <tr><th></th><th>ClearPlay</th><th>2Loud</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>What it filters</td><td>Objectionable content (violence, nudity, language)</td><td>Specific sounds (doorbells, gunshots, screams)</td></tr>
+          <tr><td>How it works</td><td>Pre-authored skip/mute timestamps per film</td><td>Real-time AI classification</td></tr>
+          <tr><td>Content modified?</td><td>No — playback altered in real time</td><td>No — volume ducked in real time</td></tr>
+          <tr><td>Copy created?</td><td>No</td><td>No</td></tr>
+        </tbody>
       </table>
-      <p>ClearPlay validates the legal model and proves the market exists. 2Loud takes a different approach to a related problem.</p>
     </div>
   </section>
 
-  <!-- Closing -->
-  <section class="closing-section">
-    <div class="section-inner fade-in">
-      <h2>One step at a time.</h2>
-      <p>Everything — the feedback loop, the dataset, the non-profit filing, the community — is contingent on the prototype working. That's the focus.</p>
-      <p><em>Document created February 14, 2026. This is a living document.</em></p>
-    </div>
+  <!-- Closing CTA -->
+  <section class="cta-section">
+    <h2>That's the whole picture.</h2>
+    <p>If you made it here, you're the kind of person who reads the fine print, questions the architecture, and cares about how things are built. That's exactly who this page was written for.</p>
+    <a href="index.html" class="cta-link">Join the waitlist</a>
   </section>
 
-  <footer>2Loud &mdash; made with care by Yifan</footer>
+  <footer>
+    2Loud — The details nobody asked for, shared because it matters.
+  </footer>
 
-  <script>
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    fadeEls.forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
