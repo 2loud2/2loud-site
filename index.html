@@ -485,6 +485,9 @@
     <div style="margin-top:0.75rem">2Loud — made with care by Yifan</div>
   </footer>
 
+  <!-- Hidden iframe for form submission -->
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
   <script>
     // Card reveal on scroll
     const cards = document.querySelectorAll('.card');
@@ -499,16 +502,14 @@
     }, { threshold: 0.2 });
     cards.forEach(card => observer.observe(card));
 
-    // ── Google Sheets waitlist submission ──
-    // REPLACE THIS URL with your Google Apps Script web app URL:
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ZuxUD_bkN0jqelMpXyDNJxTI5_Os1fW6Xp4CFttVwR07MjOiL-gotQOA96j6-eGFLA/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxYAqcXtlasjypT2xuHc6tDiiR4hJIhKXSPOpLg8ut4KUsOXlcM6Bsb9RaMgpWOnPP5pA/exec';
 
     document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
     document.getElementById('emailInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') submitWaitlist();
     });
 
-    async function submitWaitlist() {
+    function submitWaitlist() {
       const email = document.getElementById('emailInput').value.trim();
       const errorEl = document.getElementById('formError');
       errorEl.style.display = 'none';
@@ -519,37 +520,40 @@
         return;
       }
 
-      // Gather checked preferences
-      const checked = [...document.querySelectorAll('input[name="pref"]:checked')]
-        .map(cb => cb.value);
-
+      const checked = [...document.querySelectorAll('input[name="pref"]:checked')].map(cb => cb.value);
       const btn = document.getElementById('joinBtn');
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({
-            email: email,
-            testing: checked.includes('testing') ? 'yes' : '',
-            updates: checked.includes('updates') ? 'yes' : '',
-            timestamp: new Date().toISOString()
-          })
-        });
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = GOOGLE_SCRIPT_URL;
+      form.target = 'hidden_iframe';
 
-        // mode: no-cors means we can't read the response, but the request goes through
+      const fields = {
+        email: email,
+        testing: checked.includes('testing') ? 'yes' : '',
+        updates: checked.includes('updates') ? 'yes' : '',
+        timestamp: new Date().toISOString()
+      };
+
+      for (const [key, val] of Object.entries(fields)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = val;
+        form.appendChild(input);
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      setTimeout(() => {
         document.getElementById('waitlistForm').innerHTML =
           '<div class="form-success">You\'re on the list! I\'ll be in touch soon. 💛</div>';
         document.getElementById('signupOptions').style.display = 'none';
-      } catch (err) {
-        btn.textContent = 'Join waitlist';
-        btn.disabled = false;
-        errorEl.textContent = 'Something went wrong — try again?';
-        errorEl.style.display = 'block';
-      }
+      }, 800);
     }
   </script>
 </body>

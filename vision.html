@@ -263,15 +263,18 @@
     2Loud — February 14, 2026. Valentine's Day, technically.
   </footer>
 
+  <!-- Hidden iframe for form submission -->
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
   <script>
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ZuxUD_bkN0jqelMpXyDNJxTI5_Os1fW6Xp4CFttVwR07MjOiL-gotQOA96j6-eGFLA/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxYAqcXtlasjypT2xuHc6tDiiR4hJIhKXSPOpLg8ut4KUsOXlcM6Bsb9RaMgpWOnPP5pA/exec';
 
     document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
     document.getElementById('emailInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') submitWaitlist();
     });
 
-    async function submitWaitlist() {
+    function submitWaitlist() {
       const email = document.getElementById('emailInput').value.trim();
       if (!email || !email.includes('@') || !email.includes('.')) {
         document.getElementById('emailInput').style.borderColor = 'rgba(255,255,255,0.6)';
@@ -282,24 +285,35 @@
       const btn = document.getElementById('joinBtn');
       btn.textContent = 'Sending...';
       btn.disabled = true;
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({
-            email: email,
-            testing: checked.includes('testing') ? 'yes' : '',
-            updates: checked.includes('updates') ? 'yes' : '',
-            timestamp: new Date().toISOString()
-          })
-        });
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = GOOGLE_SCRIPT_URL;
+      form.target = 'hidden_iframe';
+
+      const fields = {
+        email: email,
+        testing: checked.includes('testing') ? 'yes' : '',
+        updates: checked.includes('updates') ? 'yes' : '',
+        timestamp: new Date().toISOString()
+      };
+
+      for (const [key, val] of Object.entries(fields)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = val;
+        form.appendChild(input);
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      setTimeout(() => {
         document.getElementById('waitlistForm').innerHTML = '<div style="font-size:1.1rem;color:#fff;">You\'re on the list! I\'ll be in touch soon. 💛</div>';
         document.getElementById('signupOptions').style.display = 'none';
-      } catch (err) {
-        btn.textContent = 'Join waitlist';
-        btn.disabled = false;
-      }
+      }, 800);
     }
   </script>
 
