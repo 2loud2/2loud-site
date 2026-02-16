@@ -25,13 +25,16 @@
     body {
       font-family: 'DM Sans', sans-serif;
       color: #fff;
-      line-height: 1.7;
+      line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
 
-    section {
-      padding: 5rem 1.5rem;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
+    section { padding: 5rem 1.5rem; }
 
     .section-inner {
       max-width: 640px;
@@ -42,55 +45,33 @@
     .section-inner h2 {
       font-family: 'Fraunces', serif;
       font-weight: 600;
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       margin-bottom: 1.5rem;
       line-height: 1.3;
       text-align: center;
     }
 
     .section-inner p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1rem;
       font-size: 1.05rem;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 1.25rem;
       line-height: 1.8;
     }
 
-    .section-inner p:last-child {
-      margin-bottom: 0;
-    }
+    .section-inner p strong { color: #fff; }
+    .section-inner p em { color: rgba(255,255,255,0.6); font-style: italic; }
 
-    .section-inner em {
-      font-style: italic;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .section-inner strong {
-      font-weight: 600;
-      color: #fff;
-    }
-
-    /* ── HERO — Purple ── */
+    /* Hero */
     .hero {
-      min-height: 80vh;
+      min-height: 50vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 4rem 1.5rem 3rem;
       background: var(--purple);
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -15%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-      pointer-events: none;
     }
 
     .hero .back-link {
@@ -102,15 +83,12 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-
-    .hero .back-link:hover {
-      color: rgba(255,255,255,0.8);
-    }
+    .hero .back-link:hover { color: rgba(255,255,255,0.8); }
 
     .hero-logo {
       font-family: 'Fraunces', serif;
       font-weight: 700;
-      font-size: 2.5rem;
+      font-size: 2rem;
       letter-spacing: -0.03em;
       color: rgba(255,255,255,0.4);
       margin-bottom: 1.5rem;
@@ -120,25 +98,26 @@
     .hero h1 {
       font-family: 'Fraunces', serif;
       font-weight: 700;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       letter-spacing: -0.02em;
-      max-width: 580px;
+      max-width: 600px;
       line-height: 1.2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       animation: fadeUp 0.8s ease-out 0.1s both;
     }
 
     .hero .subtitle {
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.75);
-      max-width: 480px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
       line-height: 1.7;
       animation: fadeUp 0.8s ease-out 0.2s both;
     }
 
+    /* Photo */
     .photo-section {
       background: var(--purple);
-      padding: 0 1.5rem 4rem;
+      padding: 2.5rem 1.5rem 4rem;
       text-align: center;
     }
 
@@ -159,94 +138,19 @@
       animation: fadeUp 0.8s ease-out 0.4s both;
     }
 
-    /* ── Sections ── */
-    .commotionitus { background: var(--green); }
-    .gina { background: var(--orange); }
-    .question { background: var(--blue); }
-    .building { background: var(--purple-deep); }
-
-    .closing-section {
-      background: var(--green-deep);
-      text-align: center;
-    }
-
-    .closing-section .section-inner {
-      max-width: 540px;
-    }
-
-    .closing-section h2 {
-      font-size: 2rem;
-    }
-
-    .closing-section p {
-      color: rgba(255,255,255,0.75);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      display: inline-block;
-      padding: 0.9rem 1.75rem;
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .nav-links a:hover {
-      transform: translateY(-1px);
-    }
-
-    .nav-links .primary {
-      background: var(--orange);
-    }
-
-    .nav-links .primary:hover {
-      background: var(--orange-deep);
-    }
-
-    .nav-links .secondary {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-
-    .nav-links .secondary:hover {
-      background: rgba(255,255,255,0.25);
-    }
-
-    /* ── Footer ── */
     footer {
+      background: var(--purple-deep);
       text-align: center;
       padding: 2rem 1.5rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: rgba(255,255,255,0.35);
-      background: var(--green-deep);
     }
 
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      .section-inner h2 { font-size: 1.4rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .photo-section img { width: 220px; height: 220px; }
     }
   </style>
 </head>
@@ -260,74 +164,113 @@
     <p class="subtitle">It's not a real condition. But the problem is.</p>
   </section>
 
-  <!-- Photo -->
-  <div class="photo-section">
-    <img src="yifan-gina.jpg" alt="Yifan and Gina">
-    <div class="photo-caption">Me and Gina. She's the reason this exists.</div>
-  </div>
-
   <!-- Commotionitus — Green -->
-  <section class="commotionitus">
-    <div class="section-inner fade-in">
+  <section style="background:var(--green);">
+    <div class="section-inner">
       <h2>The made-up condition</h2>
-      <p>I tell friends I have "commotionitus." It's my word for hating loud, chaotic environments. Restaurants where you can't hear the person across from you. Action movies mixed way too loud. Sirens, alarms, sudden anything.</p>
-      <p>The condition isn't real, but that doesn't make the feeling any less so.</p>
+      <p>I tell friends I have "commotionitus." It's my word for hating loud, chaotic environments. Restaurants where you can't hear the person across from you. Action movies that feel like they're attacking you. Sirens, alarms, sudden anything.</p>
+      <p>The condition isn't real. But the feeling is. And I'm not the only one who has it — I'm just the one who gave it a name.</p>
     </div>
   </section>
 
-  <!-- Gina — Orange -->
-  <section class="gina">
-    <div class="section-inner fade-in">
+  <!-- Gina — Purple Deep -->
+  <section style="background:var(--purple-deep);">
+    <div class="section-inner">
       <h2>Then there's Gina.</h2>
-      <p>Gina is my dog. She's sensitive. Every doorbell, gunshot, or siren that comes through the TV triggers unnecessary stress. Movie night becomes a game of hovering over the remote, trying to mute before the next loud moment.</p>
-      <p>And it's not just us. Friends have told me about cats bolting off the couch at thunder sounds, partners who can't handle chewing noises, roommates who flinch at sirens.</p>
-      <p>Turns out a lot of people have this problem.</p>
+      <p>Gina is my dog. She's reactive. Every doorbell, gunshot, or siren that comes through the TV triggers barking, stress, and a ruined evening. Movie night becomes a game of hovering over the remote, trying to mute before the next loud moment.</p>
+      <p>And it's not just us. Parents spend 40 minutes getting a baby down, only to have a TV gunshot wake them up. People with PTSD avoid entire genres of film. People with misophonia can't sit through a meal scene. The problem is everywhere — it just doesn't have a product yet.</p>
     </div>
   </section>
 
   <!-- The Question — Blue -->
-  <section class="question">
-    <div class="section-inner fade-in">
-      <h2>The question that started this</h2>
-      <p>One day I asked a simple question: <strong>"Is there an app that can remove specific sounds from a movie?"</strong></p>
-      <p>The answer was no. Not on any streaming platform, not in any app store, not anywhere.</p>
+  <section style="background:var(--blue);">
+    <div class="section-inner">
+      <h2>The question that started it</h2>
+      <p>One night I was watching something and a sudden scream came through the speakers. Gina lost it. I fumbled for the remote. And I thought: <strong>why isn't there something that just... catches these sounds before they get to me?</strong></p>
+      <p>I looked. There wasn't. There are apps that warn you about content. There are websites that list triggers by timestamp. But nothing that sits between you and the sound in real time and just quietly turns it down.</p>
+      <p>So I started building it.</p>
     </div>
   </section>
 
-  <!-- Building It — Deep Purple -->
-  <section class="building">
-    <div class="section-inner fade-in">
+  <!-- Honesty — Green Deep -->
+  <section style="background:var(--green-deep);">
+    <div class="section-inner">
       <h2>I'm not a programmer.</h2>
-      <p>I don't have a CS degree. I'm building this with AI tools and the belief that the thing should exist.</p>
-      <p>2Loud is a Chrome extension that listens to what you're streaming and lowers the volume on sounds you choose — doorbells, gunshots, screams, barking. It runs entirely in your browser. No data leaves your machine.</p>
+      <p>I should be honest about that. I don't have a CS degree. I'm not an engineer. I have a full-time job that has nothing to do with this. I'm building 2Loud with AI-assisted tools, learning as I go, and figuring it out in public.</p>
+      <p>I think that's actually the point. The technology to do this has existed for years. Nobody built it — not because it's hard, but because the people who could build it didn't need it. I need it. My dog needs it. A lot of people need it.</p>
+      <p><strong>So here I am, building the thing I went looking for and couldn't find.</strong></p>
     </div>
   </section>
 
-  <!-- Closing — Green Deep -->
-  <section class="closing-section">
-    <div class="section-inner fade-in">
-      <h2>That's the story so far.</h2>
-      <p>It's early. It's scrappy. It's being tested by friends. But I think it might help.</p>
-      <div class="nav-links">
-        <a href="index.html" class="primary">Join the waitlist</a>
-        <a href="vision.html" class="secondary">Read the vision</a>
-      </div>
+  <!-- Photo — Orange -->
+  <div class="photo-section" style="background:var(--orange);">
+    <img src="yifan-gina.jpg" alt="Yifan and Gina">
+    <div class="photo-caption">Me and Gina.</div>
+  </div>
+
+  <!-- Waitlist — Blue Deep -->
+  <section style="background:var(--blue-deep); text-align:center;">
+    <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;margin-bottom:0.5rem;">That's the story so far.</h2>
+    <p style="color:rgba(255,255,255,0.75);max-width:440px;margin:0 auto 2rem;line-height:1.6;">Drop your email and I'll let you know when it's ready to try.</p>
+    <div style="display:flex;gap:0.5rem;max-width:400px;margin:0 auto;" id="waitlistForm">
+      <input type="email" placeholder="your@email.com" id="emailInput" required style="flex:1;padding:0.8rem 1rem;border-radius:10px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;">
+      <button type="button" id="joinBtn" style="padding:0.8rem 1.4rem;border:none;border-radius:10px;background:rgba(255,255,255,0.2);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;cursor:pointer;white-space:nowrap;">Join waitlist</button>
     </div>
+    <div style="max-width:400px;margin:1rem auto 0;text-align:left;" id="signupOptions">
+      <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;padding:0.4rem 0;">
+        <input type="checkbox" name="pref" value="testing" checked style="accent-color:#fff;">
+        <span style="font-size:0.85rem;color:rgba(255,255,255,0.7);">Just tell me when it's available for testing</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;padding:0.4rem 0;">
+        <input type="checkbox" name="pref" value="updates" style="accent-color:#fff;">
+        <span style="font-size:0.85rem;color:rgba(255,255,255,0.7);">Keep me updated on the project</span>
+      </label>
+    </div>
+    <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:1rem;">No spam, ever. Just a heads up when you can try it.</div>
   </section>
 
-  <footer>2Loud &mdash; made with care by Yifan</footer>
+  <footer>
+    2Loud — made with care by Yifan
+  </footer>
 
   <script>
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    fadeEls.forEach(el => observer.observe(el));
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ZuxUD_bkN0jqelMpXyDNJxTI5_Os1fW6Xp4CFttVwR07MjOiL-gotQOA96j6-eGFLA/exec';
+
+    document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
+    document.getElementById('emailInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitWaitlist();
+    });
+
+    async function submitWaitlist() {
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        document.getElementById('emailInput').style.borderColor = 'rgba(255,255,255,0.6)';
+        document.getElementById('emailInput').focus();
+        return;
+      }
+      const checked = [...document.querySelectorAll('input[name="pref"]:checked')].map(cb => cb.value);
+      const btn = document.getElementById('joinBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            testing: checked.includes('testing') ? 'yes' : '',
+            updates: checked.includes('updates') ? 'yes' : '',
+            timestamp: new Date().toISOString()
+          })
+        });
+        document.getElementById('waitlistForm').innerHTML = '<div style="font-size:1.1rem;color:#fff;">You\'re on the list! I\'ll be in touch soon. 💛</div>';
+        document.getElementById('signupOptions').style.display = 'none';
+      } catch (err) {
+        btn.textContent = 'Join waitlist';
+        btn.disabled = false;
+      }
+    }
   </script>
 </body>
 </html>
