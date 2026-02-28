@@ -7,7 +7,6 @@
     { id: 'demo-video', label: 'Demo', href: 'demo-video.html' },
     { id: 'story', label: 'Story', href: 'story.html' },
     { id: 'vision', label: 'Vision', href: 'vision.html' },
-    { id: 'details', label: 'Details', href: 'details.html' },
     { id: 'how', label: 'How I Made This', href: 'how.html' },
   ];
 
