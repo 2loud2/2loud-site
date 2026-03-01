@@ -48,4 +48,26 @@
   // Insert into page
   document.body.appendChild(btn);
   document.body.appendChild(dd);
+
+  // Scroll chevron — centered at bottom of first screen, fades on scroll
+  var chevStyle = document.createElement('style');
+  chevStyle.textContent = '.scroll-chevron{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:998;opacity:.5;transition:opacity .4s ease;pointer-events:none}.scroll-chevron svg{width:28px;height:28px;animation:chevBounce 2s ease-in-out infinite}.scroll-chevron.hidden{opacity:0}@keyframes chevBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}';
+  document.head.appendChild(chevStyle);
+
+  var chev = document.createElement('div');
+  chev.className = 'scroll-chevron';
+  chev.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+  document.body.appendChild(chev);
+
+  var scrolled = false;
+  window.addEventListener('scroll', function() {
+    if (!scrolled && window.scrollY > 80) {
+      scrolled = true;
+      chev.classList.add('hidden');
+    }
+    if (scrolled && window.scrollY < 20) {
+      scrolled = false;
+      chev.classList.remove('hidden');
+    }
+  });
 })();
