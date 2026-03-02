@@ -378,7 +378,6 @@
     .timeline-marker.active { opacity: 0.85; }
     .timeline-marker.doorbell { background: var(--orange); }
     .timeline-marker.dogBark { background: var(--green); }
-    .timeline-marker.baby { background: var(--blue); }
 
     .timeline-labels {
       display: flex;
@@ -719,6 +718,7 @@
   <!-- Demo Video -->
   <section class="video-section" id="demo">
     <div class="video-inner">
+      <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:1.6rem; text-align:center; margin-bottom:2rem;">See it work</h2>
       <div class="video-container">
         <video id="demoVideo" playsinline preload="metadata" controls>
           <source src="2loud_demo.mp4" type="video/mp4">
@@ -760,9 +760,8 @@
       <div class="timeline-labels">
         <span><span class="timeline-label-dot" style="background:var(--orange)"></span>Doorbell</span>
         <span><span class="timeline-label-dot" style="background:var(--green-deep)"></span>Dog bark</span>
-        <span><span class="timeline-label-dot" style="background:var(--blue)"></span>Baby cry</span>
-        <span style="opacity:0.5">— not filtered</span>
       </div>
+      <p style="text-align:center; margin-top:1.2rem;"><a href="demo-video.html" style="color:#fff; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; opacity:0.7; font-size:0.95rem; transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Try the full interactive demo →</a></p>
     </div>
   </section>
 
@@ -856,7 +855,6 @@
       { start: 43.60, end: 45.77, type: 'dogBark', label: 'Dog bark detected', duckTo: 0.02 },
     ];
 
-    const BABY_CRY = { start: 39.30, end: 45.77, type: 'baby' };
     const FADE_DURATION = 0.3;
 
     let is2LoudOn = false;
@@ -887,14 +885,6 @@
         marker.style.width = Math.max(widthPct, 0.5) + '%';
         timelineBar.appendChild(marker);
       });
-
-      const babyMarker = document.createElement('div');
-      babyMarker.className = 'timeline-marker baby';
-      const leftPct = (BABY_CRY.start / VIDEO_DURATION) * 100;
-      const widthPct = ((BABY_CRY.end - BABY_CRY.start) / VIDEO_DURATION) * 100;
-      babyMarker.style.left = leftPct + '%';
-      babyMarker.style.width = Math.max(widthPct, 0.5) + '%';
-      timelineBar.appendChild(babyMarker);
     }
 
     function toggle2Loud() { set2Loud(!is2LoudOn); }
