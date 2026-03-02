@@ -3,13 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2Loud — Watch the Demo</title>
+  <title>2Loud — Demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --purple: #7B6B9B;
@@ -23,621 +19,1041 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DM Sans', sans-serif;
       color: #fff;
-      line-height: 1.75;
+      background: var(--purple);
       -webkit-font-smoothing: antialiased;
-      background: var(--purple);
     }
 
-    /* ===== HERO / VIDEO SECTION ===== */
-    .video-section {
-      background: var(--purple);
-      padding: 4rem 1.5rem 3rem;
-    }
-
-    .video-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .video-inner h1 {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .video-subtitle {
-      text-align: center;
-      font-size: 1.05rem;
-      opacity: 0.85;
-      margin-bottom: 2rem;
-    }
-
-    /* Video container */
-    .video-container {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-    }
-
-    .video-container video {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* Detection overlay — shows what 2Loud is catching */
-    .detection-badge {
-      position: absolute;
+    /* ── Nav ── */
+    .nav-hamburger {
+      position: fixed;
       top: 16px;
       right: 16px;
-      background: rgba(0,0,0,0.75);
+      z-index: 1001;
+      background: rgba(30,28,36,.5);
       backdrop-filter: blur(8px);
-      padding: 8px 14px;
+      -webkit-backdrop-filter: blur(8px);
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
       border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(-6px);
-      transition: opacity 0.25s, transform 0.25s;
-      pointer-events: none;
+      transition: background .2s;
     }
-
-    .detection-badge.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .nav-hamburger:hover { background: rgba(30,28,36,.7); }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 2px;
+      background: rgba(255,255,255,.7); border-radius: 1px;
+      transition: all .3s ease;
     }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-    .detection-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      animation: pulse-dot 1s ease infinite;
+    .nav-dropdown {
+      position: fixed; top: 52px; right: 16px; z-index: 999;
+      background: rgba(30,28,36,.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-radius: 10px; padding: 8px 0; min-width: 160px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.25);
+      opacity: 0; pointer-events: none; transform: translateY(-8px);
+      transition: opacity .2s ease, transform .2s ease;
     }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+    .nav-dropdown.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-dropdown a {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-weight: 400; font-size: .95rem;
+      color: rgba(255,255,255,.55); text-decoration: none;
+      padding: 9px 20px; transition: all .15s;
     }
+    .nav-dropdown a:hover { color: #fff; background: rgba(255,255,255,.06); }
+    .nav-dropdown a.current { color: #fff; font-weight: 600; }
 
-    .detection-badge.doorbell .detection-dot { background: var(--orange); }
-    .detection-badge.dogBark .detection-dot { background: var(--green); }
-
-    /* Volume indicator */
-    .volume-indicator {
-      position: absolute;
-      bottom: 60px;
-      left: 16px;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(8px);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.78rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-
-    .volume-indicator.active {
-      opacity: 1;
-    }
-
-    .vol-bar-track {
-      width: 50px;
-      height: 4px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .vol-bar-fill {
-      height: 100%;
-      background: #fff;
-      border-radius: 2px;
-      transition: width 0.15s;
-    }
-
-    /* ===== TOGGLE SECTION ===== */
-    .toggle-section {
-      background: var(--purple);
-      padding: 2.5rem 1.5rem;
-    }
-
-    .toggle-inner {
-      max-width: 800px;
-      margin: 0 auto;
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 1.5rem 3rem;
       text-align: center;
-    }
-
-    .toggle-label {
-      font-family: 'Fraunces', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-bottom: 1.2rem;
-    }
-
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .toggle-option {
-      font-size: 0.95rem;
-      opacity: 0.55;
-      transition: opacity 0.3s;
-      cursor: pointer;
-    }
-
-    .toggle-option.active {
-      opacity: 1;
-      font-weight: 600;
-    }
-
-    /* The switch */
-    .switch {
-      position: relative;
-      width: 56px;
-      height: 30px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 15px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .switch.on {
-      background: var(--green);
-    }
-
-    .switch-knob {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 24px;
-      height: 24px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    }
-
-    .switch.on .switch-knob {
-      transform: translateX(26px);
-    }
-
-    .toggle-hint {
-      font-size: 0.85rem;
-      opacity: 0.6;
-      margin-top: 1rem;
-    }
-
-    /* ===== TIMELINE SECTION ===== */
-    .timeline-section {
       background: var(--purple);
-      padding: 0 1.5rem 3rem;
-    }
-
-    .timeline-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .timeline-bar {
       position: relative;
-      height: 48px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -30%; right: -15%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-size: 2.2rem;
+      letter-spacing: -0.02em; margin-bottom: 0.75rem;
+      animation: fadeUp 0.8s ease-out both;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.65);
+      max-width: 520px; margin: 0 auto;
+      line-height: 1.6;
+      animation: fadeUp 0.8s ease-out 0.1s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Demo Section ── */
+    .demo-section {
+      background: var(--blue);
+      padding: 3.5rem 1.5rem 4rem;
+    }
+
+    .demo-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    /* Video side */
+    .demo-video {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .video-screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #1a1a2e;
+      border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
 
-    .timeline-progress {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      background: rgba(255,255,255,0.06);
-      pointer-events: none;
-      transition: width 0.1s linear;
+    .video-screen video {
+      width: 100%; height: 100%;
+      display: block; object-fit: cover;
     }
 
-    .timeline-marker {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      opacity: 0.5;
-      transition: opacity 0.2s;
-      border-radius: 3px;
+    .video-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.25);
+      transition: opacity .2s;
     }
+    .video-overlay.hidden { opacity: 0; pointer-events: none; }
 
-    .timeline-marker.active {
-      opacity: 0.85;
-    }
-
-    .timeline-marker.doorbell { background: var(--orange); }
-    .timeline-marker.dogBark { background: var(--green); }
-    .timeline-marker.baby { background: var(--blue); }
-
-    .timeline-labels {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 0.75rem;
-      font-size: 0.8rem;
-      opacity: 0.7;
-    }
-
-    .timeline-label-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
+    .play-btn-big {
+      width: 60px; height: 60px;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,.3);
       border-radius: 50%;
-      margin-right: 5px;
-      vertical-align: middle;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s;
+    }
+    .play-btn-big:hover {
+      background: rgba(255,255,255,.25);
+      transform: scale(1.05);
+    }
+    .play-btn-big svg { margin-left: 3px; }
+
+    /* Dim overlay for volume ducking */
+    .video-dim {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.5);
+      opacity: 0; transition: opacity .15s;
+      pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-dim .vol-badge {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(0,0,0,.5); border-radius: 20px;
+      padding: 6px 14px;
+      opacity: 0; transition: opacity .2s;
+    }
+    .video-dim .vol-badge span {
+      font-size: 12px; color: rgba(255,255,255,.8);
+      font-family: 'DM Sans', sans-serif;
     }
 
-    /* ===== EXPLANATION SECTION ===== */
-    .explain-section {
+    /* Transport bar */
+    .transport {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 8px; padding: 0 4px;
+    }
+    .transport-play {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.7); padding: 2px;
+      transition: color .2s;
+    }
+    .transport-play:hover { color: #fff; }
+
+    .transport-time {
+      font-size: 12px; color: rgba(255,255,255,.5);
+      font-variant-numeric: tabular-nums;
+      min-width: 80px;
+    }
+
+    .transport-bar {
+      flex: 1; height: 4px;
+      background: rgba(255,255,255,.15);
+      border-radius: 2px; position: relative;
+      cursor: pointer;
+    }
+    .transport-progress {
+      height: 100%; background: rgba(255,255,255,.5);
+      border-radius: 2px; width: 0%;
+      transition: none;
+    }
+    /* Detection markers on timeline */
+    .transport-marker {
+      position: absolute; top: -3px; height: 10px;
+      border-radius: 2px; opacity: .6;
+    }
+
+    .timeline-legend {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 6px; padding: 0 4px;
+      font-size: 11px; color: rgba(255,255,255,.4);
+    }
+    .timeline-legend span { display: flex; align-items: center; gap: 5px; }
+    .legend-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      display: inline-block;
+    }
+    .legend-note {
+      font-size: 10px;
+      color: rgba(255,255,255,.25);
+      margin-left: -8px;
+    }
+
+    /* ── Extension Panel ── */
+    .ext-panel {
+      width: 280px;
+      min-width: 280px;
+      background: #1e1c24;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      font-size: 13px;
+    }
+
+    .ext-header {
+      padding: 14px 16px 10px;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ext-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+    .ext-status {
+      font-size: 11px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .ext-status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #555; transition: background .3s;
+    }
+    .ext-status-dot.active { background: #6BCB77; }
+
+    /* Detection feed */
+    .ext-feed {
+      height: 90px;
+      overflow: hidden;
+      padding: 8px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: relative;
+    }
+    .ext-feed::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 20px;
+      background: linear-gradient(transparent, #1e1c24);
+      pointer-events: none;
+    }
+
+    .feed-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 3px 0;
+      font-size: 11px;
+      color: rgba(255,255,255,.4);
+      transition: color .2s;
+    }
+    .feed-item.trigger {
+      color: rgba(255,255,255,.9);
+      font-weight: 500;
+    }
+    .feed-conf {
+      font-size: 10px;
+      color: rgba(255,255,255,.25);
+      margin-left: auto;
+      font-variant-numeric: tabular-nums;
+    }
+    .feed-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Sliders */
+    .ext-sliders {
+      padding: 12px 16px 16px;
+    }
+    .ext-sliders-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.3);
+      margin-bottom: 12px;
+    }
+    .slider-row {
+      display: flex; align-items: center;
+      gap: 10px; margin-bottom: 12px;
+    }
+    .slider-row:last-child { margin-bottom: 0; }
+
+    .slider-color {
+      width: 8px; height: 8px;
+      border-radius: 50%; flex-shrink: 0;
+    }
+    .slider-label {
+      font-size: 12px;
+      color: rgba(255,255,255,.7);
+      min-width: 72px;
+    }
+    .slider-track {
+      flex: 1; height: 4px;
+      background: rgba(255,255,255,.1);
+      border-radius: 2px;
+      position: relative;
+      cursor: pointer;
+    }
+    .slider-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width .1s;
+    }
+    .slider-thumb {
+      position: absolute; top: 50%;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      transform: translate(-50%, -50%);
+      cursor: grab;
+      box-shadow: 0 1px 4px rgba(0,0,0,.3);
+      transition: transform .1s;
+    }
+    .slider-thumb:hover { transform: translate(-50%, -50%) scale(1.15); }
+    .slider-thumb:active { cursor: grabbing; transform: translate(-50%, -50%) scale(1.1); }
+
+    .slider-value {
+      font-size: 11px;
+      color: rgba(255,255,255,.4);
+      min-width: 28px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Extension footer */
+    .ext-footer {
+      padding: 10px 16px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .ext-vol-label {
+      font-size: 11px;
+      color: rgba(255,255,255,.35);
+    }
+    .ext-vol-value {
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      transition: color .15s;
+    }
+
+    /* ── How it Works Section ── */
+    .how-section {
       background: var(--green);
       padding: 4rem 1.5rem;
+      text-align: center;
     }
-
-    .explain-inner {
-      max-width: 640px;
-      margin: 0 auto;
+    .how-section h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 1.6rem;
+      margin-bottom: 2rem;
     }
-
-    .explain-inner h2 {
+    .how-steps {
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      text-align: left;
+    }
+    .how-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 1.5rem;
+    }
+    .how-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .how-text {
+      line-height: 1.65;
+      color: rgba(255,255,255,.85);
+      padding-top: 4px;
+    }
+    .how-closing {
+      color: rgba(255,255,255,.5);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .how-details {
+      max-width: 540px;
+      margin: 3rem auto 0;
+      text-align: left;
+    }
+    .how-detail-block {
+      margin-bottom: 2.5rem;
+    }
+    .how-detail-block:last-child {
+      margin-bottom: 0;
+    }
+    .how-detail-block h3 {
       font-family: 'Fraunces', serif;
       font-weight: 600;
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: rgba(255,255,255,.95);
     }
-
-    .explain-inner p {
-      font-size: 1rem;
-      margin-bottom: 1.2rem;
-      opacity: 0.9;
-    }
-
-    .explain-inner .ps {
-      font-size: 0.92rem;
-      opacity: 0.7;
-      font-style: italic;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 1.5rem;
-    }
-
-    .explain-inner .how-link {
-      margin-top: 1.5rem;
-    }
-
-    .explain-inner .how-link a {
-      color: #fff;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-      opacity: 0.7;
-      transition: opacity 0.2s;
+    .how-detail-block p {
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
       font-size: 0.95rem;
     }
-
-    .explain-inner .how-link a:hover {
-      opacity: 1;
+    .how-detail-block p:last-child {
+      margin-bottom: 0;
     }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--blue-deep);
-      padding: 3rem 1.5rem;
+    /* ── Waitlist Section ── */
+    .waitlist-section {
+      background: var(--orange);
+      padding: 4rem 1.5rem;
       text-align: center;
     }
+    .waitlist-section h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600; font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .waitlist-section > p {
+      color: rgba(255,255,255,.8);
+      max-width: 440px; margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .email-form {
+      display: flex; gap: 10px;
+      max-width: 400px; margin: 0 auto 1rem;
+    }
+    .email-form input {
+      flex: 1; padding: 12px 16px;
+      border: none; border-radius: 8px;
+      background: rgba(255,255,255,.15);
+      color: #fff; font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .email-form input::placeholder { color: rgba(255,255,255,.4); }
+    .email-form button {
+      padding: 12px 20px;
+      border: none; border-radius: 8px;
+      background: rgba(255,255,255,.2);
+      color: #fff; font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: background .2s;
+      white-space: nowrap;
+    }
+    .email-form button:hover { background: rgba(255,255,255,.3); }
 
-    footer p {
-      font-size: 0.88rem;
-      opacity: 0.6;
+    .waitlist-fine {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,.5);
     }
 
+    /* ── Footer ── */
+    footer {
+      background: var(--blue-deep);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
     footer a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+      color: rgba(255,255,255,.5);
+      text-decoration: none; font-size: .9rem;
+      transition: color .2s;
+    }
+    footer a:hover { color: rgba(255,255,255,.8); }
+    footer .footer-links {
+      margin-bottom: 1rem;
+      display: flex; gap: 1.5rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    footer .footer-credit {
+      font-size: .85rem;
+      color: rgba(255,255,255,.3);
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 600px) {
-      .video-inner h1 { font-size: 1.6rem; }
-      section { padding: 3rem 1.2rem; }
-      .timeline-labels { flex-wrap: wrap; }
+    /* ── Responsive ── */
+    @media (max-width: 740px) {
+      .hero { padding: 5rem 1.5rem 2.5rem; }
+      .hero h1 { font-size: 1.6rem; }
+
+      .demo-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .ext-panel {
+        width: 100%;
+        min-width: unset;
+        max-width: 400px;
+      }
+      .email-form { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <script src="nav.js"></script>
 
-  <!-- VIDEO SECTION -->
-  <section class="video-section">
-    <div class="video-inner">
-      <h1>A normal night. A familiar problem.</h1>
-      <p class="video-subtitle">Watch what happens when a doorbell rings on TV.</p>
+  <!-- Nav -->
+  <button class="nav-hamburger" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-dropdown" id="navDropdown">
+    <a href="index.html">Home</a>
+    <a href="demo.html" class="current">Demo</a>
+    <a href="story.html">Story</a>
+    <a href="vision.html">Vision</a>
+    <a href="details.html">Details</a>
+  </div>
 
-      <div class="video-container">
-        <video id="demoVideo" playsinline preload="metadata" controls>
-          <source src="2loud_demo.mp4" type="video/mp4">
-        </video>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>See it work.</h1>
+    <p>A doorbell rings on TV. Gina — my wire-haired dachshund — hears it and loses it. Drag the sliders and watch the extension react.</p>
+  </section>
 
-        <!-- Detection badge overlay -->
-        <div class="detection-badge" id="detectionBadge">
-          <span class="detection-dot"></span>
-          <span id="detectionText"></span>
-        </div>
+  <!-- Demo -->
+  <section class="demo-section">
+    <div class="demo-container">
 
-        <!-- Volume indicator overlay -->
-        <div class="volume-indicator" id="volumeIndicator">
-          <span>🔉</span>
-          <div class="vol-bar-track">
-            <div class="vol-bar-fill" id="volBarFill" style="width:100%"></div>
+      <!-- Video -->
+      <div class="demo-video">
+        <div class="video-screen" id="videoScreen">
+          <video id="demoVideo" preload="auto" playsinline
+            style="width:100%; height:100%; object-fit:cover; display:block;">
+            <source src="demo-video.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay" id="videoOverlay">
+            <div class="play-btn-big" id="playBtnBig">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
           </div>
-          <span id="volPercent">100%</span>
+          <div class="video-dim" id="videoDim">
+            <div class="vol-badge" id="volBadge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+              <span id="volBadgeText"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="transport">
+          <button class="transport-play" id="transportPlay" onclick="togglePlay()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" id="transportIcon">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+          <span class="transport-time" id="transportTime">0:00 / 0:46</span>
+          <div class="transport-bar" id="transportBar">
+            <div class="transport-progress" id="transportProgress"></div>
+          </div>
+        </div>
+        <div class="timeline-legend">
+          <span><span class="legend-dot" style="background:#D4804A;"></span>Doorbell</span>
+          <span><span class="legend-dot" style="background:#4A6B52;"></span>Dog bark</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- TOGGLE + TIMELINE -->
-  <section class="toggle-section">
-    <div class="toggle-inner">
-      <p class="toggle-label">Try it both ways.</p>
-      <div class="toggle-row">
-        <span class="toggle-option active" id="offLabel" onclick="set2Loud(false)">Without 2Loud</span>
-        <div class="switch" id="toggleSwitch" onclick="toggle2Loud()">
-          <div class="switch-knob"></div>
+      <!-- Extension Panel -->
+      <div class="ext-panel">
+        <div class="ext-header">
+          <span style="display:flex; align-items:center; gap:8px;">
+            <svg width="20" height="15" viewBox="0 0 82 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="27" width="14" height="36" rx="7" fill="white"/>
+              <rect x="17" y="27" width="14" height="36" rx="7" fill="white"/>
+              <rect x="34" width="14" height="63" rx="7" fill="white"/>
+              <rect x="51" width="14" height="63" rx="7" fill="white"/>
+              <rect x="68" y="27" width="14" height="36" rx="7" fill="white"/>
+            </svg>
+            <span class="ext-title">2Loud</span>
+          </span>
+          <span class="ext-status">
+            <span class="ext-status-dot" id="statusDot"></span>
+            <span id="statusLabel" style="color:rgba(255,255,255,.4);">Idle</span>
+          </span>
         </div>
-        <span class="toggle-option" id="onLabel" onclick="set2Loud(true)">With 2Loud</span>
+
+        <div class="ext-feed" id="feedContainer">
+          <!-- Feed items injected by JS -->
+        </div>
+
+        <div class="ext-sliders">
+          <div class="ext-sliders-title">Volume when detected</div>
+
+          <div class="slider-row" data-cat="doorbell">
+            <div class="slider-color" style="background:#D4804A;"></div>
+            <span class="slider-label">Doorbell</span>
+            <div class="slider-track">
+              <div class="slider-fill" style="background:#D4804A;"></div>
+              <div class="slider-thumb"></div>
+            </div>
+            <span class="slider-value">0%</span>
+          </div>
+
+          <div class="slider-row" data-cat="dogBark">
+            <div class="slider-color" style="background:#4A6B52;"></div>
+            <span class="slider-label">Dog / Bark</span>
+            <div class="slider-track">
+              <div class="slider-fill" style="background:#4A6B52;"></div>
+              <div class="slider-thumb"></div>
+            </div>
+            <span class="slider-value">0%</span>
+          </div>
+
+        </div>
+
+        <div class="ext-footer">
+          <span class="ext-vol-label">Current volume</span>
+          <span class="ext-vol-value" id="extVolValue" style="color:rgba(255,255,255,.6);">100%</span>
+        </div>
       </div>
-      <p class="toggle-hint" id="toggleHint">Play the video first, then toggle this on and replay.</p>
+
     </div>
   </section>
 
-  <section class="timeline-section">
-    <div class="timeline-inner">
-      <div class="timeline-bar" id="timelineBar" onclick="seekTimeline(event)">
-        <div class="timeline-progress" id="timelineProgress"></div>
-        <!-- Markers will be injected by JS -->
+  <!-- How it works — Green -->
+  <section class="how-section">
+    <h2>How it works</h2>
+
+    <div class="how-details">
+
+      <div class="how-detail-block">
+        <h3>The tech behind it</h3>
+        <p>2Loud uses a sound classification model called <strong>YAMNet</strong>, built by Google and trained to recognize 521 different audio events — everything from doorbells to dog barks to glass breaking. It's the same technology used in smart doorbells, security systems, and hearing aid research.</p>
+        <p>The model runs directly in your browser using <strong>TensorFlow.js</strong>. It processes your tab's audio in short frames, classifies what it hears, and when it detects a sound in one of your selected categories, it smoothly lowers the volume — then brings it back up when the sound passes.</p>
       </div>
-      <div class="timeline-labels">
-        <span><span class="timeline-label-dot" style="background:var(--orange)"></span>Doorbell</span>
-        <span><span class="timeline-label-dot" style="background:var(--green-deep)"></span>Dog bark</span>
-        <span><span class="timeline-label-dot" style="background:var(--blue)"></span>Baby cry</span>
-        <span style="opacity:0.5">— not filtered</span>
+
+      <div class="how-detail-block">
+        <h3>Privacy by architecture</h3>
+        <p>Your audio never leaves your device. There's no server listening to what you watch. There's no account to create. There's no cloud processing. The AI runs locally, in your browser, on your machine.</p>
+        <p>This isn't a privacy policy — it's how the thing is built. The extension only requests two permissions: access to tab audio, and permission to run on streaming sites. No browsing history. No cookies. No identity. If a permission isn't declared, Chrome physically prevents the extension from accessing it. You can <a href="vision.html" style="color:rgba(255,255,255,.9); text-decoration:underline; text-underline-offset:3px;">read the full architecture</a> and verify it yourself.</p>
       </div>
+
+      <div class="how-detail-block">
+        <h3>It gets better when you use it</h3>
+        <p>The extension has a simple feedback mechanism — a thumbs up when the filter catches something correctly, and a thumbs down when it misses or gets it wrong. That's it.</p>
+        <p>Your feedback is anonymous and optional. But in aggregate, across many people watching many hours of content, it tells us which categories need tuning, which platforms have quirks, and which sounds bother people that nobody thought to include. Every thumbs down makes the next version smarter. You're not reporting a bug — you're training the product.</p>
+      </div>
+
     </div>
   </section>
 
-  <!-- WHAT HAPPENED -->
-  <section class="explain-section">
-    <div class="explain-inner">
-      <h2>What you just saw</h2>
-      <p>A doorbell rings on TV. Gina — my wire-haired dachshund — hears it and goes on alert. I calm her down. We settle back in. Then a dog barks on TV. Gina loses it. The baby upstairs wakes up.</p>
-      <p>Two sounds. Two filters. That's what 2Loud catches.</p>
-      <p>With 2Loud on, the doorbell gets lowered before Gina reacts. The barking gets lowered before it escalates. The baby cry stays — because 2Loud only filters the categories you choose. The rest of your audio is untouched.</p>
-      <p class="ps">P.S. Ironically, through the process of making this video and website, Gina has been desensitized to doorbells and barking on TV. She no longer reacts. Nice job, Gina.</p>
-      <p class="how-link"><a href="how.html">How I made this video →</a></p>
+  <!-- Waitlist -->
+  <section class="waitlist-section">
+    <h2>Want in early?</h2>
+    <p>I'm building this now and sharing it with friends first. Drop your email and I'll let you know when it's ready.</p>
+    <div id="waitlistForm">
+      <div class="email-form">
+        <input type="email" id="waitlistEmail" placeholder="your email" />
+        <button onclick="submitWaitlist()">Join waitlist</button>
+      </div>
     </div>
+    <p class="waitlist-fine">No spam, ever. Just a heads up when you can try it.</p>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
-    <p>2Loud · A little more peace when you press play.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Story</a>
+      <a href="vision.html">Vision</a>
+      <a href="details.html">Details</a>
+    </div>
+    <div class="footer-credit">2Loud — made with care by Yifan</div>
   </footer>
 
-  <script>
-    // ===== CONFIGURATION =====
-    const VIDEO_DURATION = 45.77;
+<script>
+// ═══════════════════════════════════════════
+// Detection data (from the real video)
+// ═══════════════════════════════════════════
+const DETECTIONS = [
+  { time: 2.33,  end: 4.0,   cat: 'doorbell',  label: 'Doorbell',  conf: 0.94 },
+  { time: 22.53, end: 23.50, cat: 'dogBark',   label: 'Dog bark',  conf: 0.81 },
+  { time: 31.30, end: 40.10, cat: 'dogBark',   label: 'Dog bark',  conf: 0.88 },
+  { time: 43.60, end: 45.77, cat: 'dogBark',   label: 'Dog bark',  conf: 0.77 },
+];
+const BABY_CRY = { time: 39.30, end: 45.77 };
+const FADE_DUR = 0.3;
 
-    // Trigger events: sounds that 2Loud would catch
-    const TRIGGERS = [
-      { start: 2.33, end: 4.0, type: 'doorbell', label: 'Doorbell detected', duckTo: 0.02 },
-      { start: 22.53, end: 23.50, type: 'dogBark', label: 'Dog bark detected', duckTo: 0.02 },
-      { start: 31.30, end: 40.10, type: 'dogBark', label: 'Dog bark detected', duckTo: 0.02 },
-      { start: 43.60, end: 45.77, type: 'dogBark', label: 'Dog bark detected', duckTo: 0.02 },
-    ];
+const CAT_COLORS = {
+  doorbell: '#D4804A',
+  dogBark:  '#4A6B52',
+};
 
-    // Baby cry — shown on timeline but NOT filtered
-    const BABY_CRY = { start: 39.30, end: 45.77, type: 'baby' };
+const AMBIENT = [
+  'Speech', 'Music', 'Silence', 'Background noise', 'Television',
+  'Dialogue', 'Soundtrack', 'Laughter', 'Breathing', 'Footsteps',
+];
 
-    const FADE_DURATION = 0.3; // seconds for volume fade in/out
+// ═══════════════════════════════════════════
+// State
+// ═══════════════════════════════════════════
+let levels = { doorbell: 0, dogBark: 0 };
+let feedItems = [];
+let nextDetIdx = 0;
+let babyCryFed = false;
+let lastAmbientTime = 0;
+let animId = null;
 
-    // ===== STATE =====
-    let is2LoudOn = false;
-    let animFrame = null;
+// ═══════════════════════════════════════════
+// DOM refs
+// ═══════════════════════════════════════════
+const video = document.getElementById('demoVideo');
+const videoScreen = document.getElementById('videoScreen');
+const videoOverlay = document.getElementById('videoOverlay');
+const videoDim = document.getElementById('videoDim');
+const volBadge = document.getElementById('volBadge');
+const volBadgeText = document.getElementById('volBadgeText');
+const transportIcon = document.getElementById('transportIcon');
+const transportTime = document.getElementById('transportTime');
+const transportBar = document.getElementById('transportBar');
+const transportProgress = document.getElementById('transportProgress');
+const statusDot = document.getElementById('statusDot');
+const statusLabel = document.getElementById('statusLabel');
+const feedContainer = document.getElementById('feedContainer');
+const extVolValue = document.getElementById('extVolValue');
 
-    // ===== ELEMENTS =====
-    const video = document.getElementById('demoVideo');
-    const toggleSwitch = document.getElementById('toggleSwitch');
-    const onLabel = document.getElementById('onLabel');
-    const offLabel = document.getElementById('offLabel');
-    const toggleHint = document.getElementById('toggleHint');
-    const detectionBadge = document.getElementById('detectionBadge');
-    const detectionText = document.getElementById('detectionText');
-    const volumeIndicator = document.getElementById('volumeIndicator');
-    const volBarFill = document.getElementById('volBarFill');
-    const volPercent = document.getElementById('volPercent');
-    const timelineProgress = document.getElementById('timelineProgress');
-    const timelineBar = document.getElementById('timelineBar');
+// ═══════════════════════════════════════════
+// Timeline markers
+// ═══════════════════════════════════════════
+function renderMarkers() {
+  const dur = video.duration || 45.77;
+  transportBar.querySelectorAll('.transport-marker').forEach(m => m.remove());
+  DETECTIONS.forEach(d => {
+    const marker = document.createElement('div');
+    marker.className = 'transport-marker';
+    marker.style.left = (d.time / dur * 100) + '%';
+    marker.style.width = Math.max((d.end - d.time) / dur * 100, 0.8) + '%';
+    marker.style.background = CAT_COLORS[d.cat];
+    transportBar.appendChild(marker);
+  });
+}
 
-    // ===== INIT TIMELINE MARKERS =====
-    function initTimeline() {
-      // Trigger markers
-      TRIGGERS.forEach(t => {
-        const marker = document.createElement('div');
-        marker.className = `timeline-marker ${t.type}`;
-        marker.dataset.start = t.start;
-        marker.dataset.end = t.end;
-        const leftPct = (t.start / VIDEO_DURATION) * 100;
-        const widthPct = ((t.end - t.start) / VIDEO_DURATION) * 100;
-        marker.style.left = leftPct + '%';
-        marker.style.width = Math.max(widthPct, 0.5) + '%';
-        timelineBar.appendChild(marker);
-      });
+video.addEventListener('loadedmetadata', renderMarkers);
+// Fallback if metadata already loaded
+if (video.readyState >= 1) renderMarkers();
 
-      // Baby cry marker
-      const babyMarker = document.createElement('div');
-      babyMarker.className = 'timeline-marker baby';
-      const leftPct = (BABY_CRY.start / VIDEO_DURATION) * 100;
-      const widthPct = ((BABY_CRY.end - BABY_CRY.start) / VIDEO_DURATION) * 100;
-      babyMarker.style.left = leftPct + '%';
-      babyMarker.style.width = Math.max(widthPct, 0.5) + '%';
-      timelineBar.appendChild(babyMarker);
-    }
-
-    // ===== TOGGLE =====
-    function toggle2Loud() {
-      set2Loud(!is2LoudOn);
-    }
-
-    function set2Loud(on) {
-      is2LoudOn = on;
-      toggleSwitch.classList.toggle('on', on);
-      onLabel.classList.toggle('active', on);
-      offLabel.classList.toggle('active', !on);
-
-      if (on) {
-        toggleHint.textContent = '2Loud is on. Doorbells and barking will be lowered.';
+// ═══════════════════════════════════════════
+// Volume calculation
+// ═══════════════════════════════════════════
+function getVolume(t) {
+  let vol = 1;
+  for (const d of DETECTIONS) {
+    const targetVol = levels[d.cat] / 100;
+    const fadeStart = d.time - FADE_DUR;
+    const fadeEnd = d.end + FADE_DUR;
+    if (t >= fadeStart && t <= fadeEnd) {
+      let factor;
+      if (t < d.time) {
+        const p = (t - fadeStart) / FADE_DUR;
+        factor = 1 - p * (1 - targetVol);
+      } else if (t > d.end) {
+        const p = (t - d.end) / FADE_DUR;
+        factor = targetVol + p * (1 - targetVol);
       } else {
-        toggleHint.textContent = 'Play the video first, then toggle this on and replay.';
-        // Reset volume immediately
-        video.volume = 1;
-        volumeIndicator.classList.remove('active');
+        factor = targetVol;
       }
+      vol = Math.min(vol, factor);
     }
+  }
+  return Math.max(0, Math.min(1, vol));
+}
 
-    // ===== VOLUME DUCKING ENGINE =====
-    function getTargetVolume(currentTime) {
-      if (!is2LoudOn) return 1;
+// ═══════════════════════════════════════════
+// Feed management
+// ═══════════════════════════════════════════
+function addFeedItem(label, conf, cat) {
+  const isTrigger = !!cat;
+  feedItems.unshift({ label, conf, cat, trigger: isTrigger });
+  if (feedItems.length > 20) feedItems.pop();
+  renderFeed();
+}
 
-      for (const t of TRIGGERS) {
-        // Inside the trigger zone
-        if (currentTime >= t.start && currentTime <= t.end) {
-          return t.duckTo;
-        }
-        // Fade in zone (before trigger)
-        if (currentTime >= t.start - FADE_DURATION && currentTime < t.start) {
-          const progress = (t.start - currentTime) / FADE_DURATION;
-          return t.duckTo + (1 - t.duckTo) * progress;
-        }
-        // Fade out zone (after trigger)
-        if (currentTime > t.end && currentTime <= t.end + FADE_DURATION) {
-          const progress = (currentTime - t.end) / FADE_DURATION;
-          return t.duckTo + (1 - t.duckTo) * progress;
-        }
-      }
+function renderFeed() {
+  feedContainer.innerHTML = feedItems.slice(0, 8).map(item => {
+    const dotColor = item.cat ? CAT_COLORS[item.cat] : 'rgba(255,255,255,.15)';
+    const cls = item.trigger ? 'feed-item trigger' : 'feed-item';
+    return '<div class="' + cls + '">' +
+      '<div class="feed-dot" style="background:' + dotColor + '"></div>' +
+      '<span>' + item.label + '</span>' +
+      '<span class="feed-conf">' + (item.conf * 100).toFixed(0) + '%</span>' +
+    '</div>';
+  }).join('');
+}
 
-      return 1;
-    }
+// ═══════════════════════════════════════════
+// Playback
+// ═══════════════════════════════════════════
+function togglePlay() {
+  if (video.ended) {
+    video.currentTime = 0;
+    nextDetIdx = 0;
+    babyCryFed = false;
+    feedItems = [];
+    renderFeed();
+  }
 
-    function getActiveTrigger(currentTime) {
-      for (const t of TRIGGERS) {
-        if (currentTime >= t.start - 0.1 && currentTime <= t.end + 0.1) {
-          return t;
-        }
-      }
-      return null;
-    }
+  if (video.paused) {
+    video.play();
+    statusDot.classList.add('active');
+    statusLabel.textContent = 'Listening';
+    statusLabel.style.color = 'rgba(255,255,255,.6)';
+    videoOverlay.classList.add('hidden');
+    transportIcon.innerHTML = '<path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>';
+    startLoop();
+  } else {
+    video.pause();
+    statusDot.classList.remove('active');
+    statusLabel.textContent = 'Paused';
+    statusLabel.style.color = 'rgba(255,255,255,.4)';
+    transportIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    stopLoop();
+  }
+}
 
-    function updateAudioLoop() {
-      if (!video.paused) {
-        const t = video.currentTime;
+function startLoop() {
+  stopLoop();
+  function loop() {
+    update();
+    animId = requestAnimationFrame(loop);
+  }
+  animId = requestAnimationFrame(loop);
+}
 
-        // Volume
-        const targetVol = getTargetVolume(t);
-        video.volume = Math.max(0, Math.min(1, targetVol));
+function stopLoop() {
+  if (animId) {
+    cancelAnimationFrame(animId);
+    animId = null;
+  }
+}
 
-        // Volume indicator
-        if (is2LoudOn && targetVol < 0.95) {
-          volumeIndicator.classList.add('active');
-          const pct = Math.round(targetVol * 100);
-          volBarFill.style.width = pct + '%';
-          volPercent.textContent = pct + '%';
-        } else {
-          volumeIndicator.classList.remove('active');
-        }
+function update() {
+  const t = video.currentTime;
+  const dur = video.duration || 45.77;
 
-        // Detection badge
-        const active = getActiveTrigger(t);
-        if (is2LoudOn && active) {
-          detectionBadge.className = `detection-badge ${active.type} visible`;
-          detectionText.textContent = active.label;
-        } else {
-          detectionBadge.classList.remove('visible');
-        }
+  // Feed: new detections
+  while (nextDetIdx < DETECTIONS.length && t >= DETECTIONS[nextDetIdx].time) {
+    const d = DETECTIONS[nextDetIdx];
+    addFeedItem(d.label, d.conf, d.cat);
+    nextDetIdx++;
+  }
 
-        // Highlight active timeline markers
-        document.querySelectorAll('.timeline-marker').forEach(m => {
-          const mStart = parseFloat(m.dataset.start);
-          const mEnd = parseFloat(m.dataset.end);
-          if (mStart && t >= mStart && t <= mEnd) {
-            m.classList.add('active');
-          } else {
-            m.classList.remove('active');
-          }
-        });
+  // Baby cry shows up as ambient detection (not a trigger category)
+  if (!babyCryFed && t >= BABY_CRY.time) {
+    addFeedItem('Baby cry', 0.85, null);
+    babyCryFed = true;
+  }
 
-        // Timeline progress
-        const progressPct = (t / VIDEO_DURATION) * 100;
-        timelineProgress.style.width = progressPct + '%';
-      }
+  // Ambient sounds
+  if (!video.paused && t - lastAmbientTime > 1.8) {
+    const amb = AMBIENT[Math.floor(Math.random() * AMBIENT.length)];
+    addFeedItem(amb, 0.3 + Math.random() * 0.35, null);
+    lastAmbientTime = t;
+  }
 
-      animFrame = requestAnimationFrame(updateAudioLoop);
-    }
+  // Volume ducking
+  const vol = getVolume(t);
+  const volPct = Math.round(vol * 100);
+  video.volume = vol;
 
-    // ===== TIMELINE SEEK =====
-    function seekTimeline(e) {
-      const rect = timelineBar.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      const seekTime = pct * VIDEO_DURATION;
-      video.currentTime = seekTime;
-      if (video.paused) video.play();
-    }
+  extVolValue.textContent = volPct + '%';
+  if (volPct < 100) {
+    extVolValue.style.color = '#D4804A';
+    videoDim.style.opacity = (1 - vol) * 0.5;
+    volBadge.style.opacity = '1';
+    volBadgeText.textContent = volPct + '%';
+  } else {
+    extVolValue.style.color = 'rgba(255,255,255,.6)';
+    videoDim.style.opacity = '0';
+    volBadge.style.opacity = '0';
+  }
 
-    // ===== EVENTS =====
-    video.addEventListener('play', () => {
-      if (animFrame) cancelAnimationFrame(animFrame);
-      updateAudioLoop();
-    });
+  // Transport
+  const pct = (t / dur) * 100;
+  transportProgress.style.width = pct + '%';
+  transportTime.textContent = fmt(t) + ' / ' + fmt(dur);
+}
 
-    video.addEventListener('pause', () => {
-      if (animFrame) cancelAnimationFrame(animFrame);
-    });
+function fmt(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + String(sec).padStart(2, '0');
+}
 
-    video.addEventListener('ended', () => {
-      if (animFrame) cancelAnimationFrame(animFrame);
-      volumeIndicator.classList.remove('active');
-      detectionBadge.classList.remove('visible');
-    });
+// Video ended
+video.addEventListener('ended', () => {
+  statusDot.classList.remove('active');
+  statusLabel.textContent = 'Done';
+  statusLabel.style.color = 'rgba(255,255,255,.4)';
+  transportIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+  videoOverlay.classList.remove('hidden');
+  stopLoop();
+});
 
-    // ===== INIT =====
-    initTimeline();
-  </script>
+// Click video to play/pause
+videoScreen.addEventListener('click', (e) => {
+  if (e.target.closest('.play-btn-big') || e.target === videoScreen || e.target.tagName === 'VIDEO') {
+    togglePlay();
+  }
+});
+
+// Click transport bar to seek
+transportBar.addEventListener('click', (e) => {
+  const rect = transportBar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  const dur = video.duration || 45.77;
+  video.currentTime = pct * dur;
+  // Reset detection index
+  nextDetIdx = 0;
+  babyCryFed = false;
+  for (let i = 0; i < DETECTIONS.length; i++) {
+    if (DETECTIONS[i].time <= video.currentTime) nextDetIdx = i + 1;
+  }
+  if (video.currentTime >= BABY_CRY.time) babyCryFed = true;
+  update();
+});
+
+// ═══════════════════════════════════════════
+// Slider interaction
+// ═══════════════════════════════════════════
+document.querySelectorAll('.slider-row').forEach(row => {
+  const cat = row.dataset.cat;
+  if (!cat) return;
+  const track = row.querySelector('.slider-track');
+  const fill = row.querySelector('.slider-fill');
+  const thumb = row.querySelector('.slider-thumb');
+  const valueEl = row.querySelector('.slider-value');
+
+  function setLevel(pct) {
+    pct = Math.max(0, Math.min(100, Math.round(pct)));
+    levels[cat] = pct;
+    fill.style.width = pct + '%';
+    thumb.style.left = pct + '%';
+    valueEl.textContent = pct + '%';
+  }
+
+  setLevel(0);
+
+  function handleMove(clientX) {
+    const rect = track.getBoundingClientRect();
+    const pct = ((clientX - rect.left) / rect.width) * 100;
+    setLevel(pct);
+  }
+
+  thumb.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    const onMove = (e) => handleMove(e.clientX);
+    const onUp = () => {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+
+  track.addEventListener('click', (e) => handleMove(e.clientX));
+
+  thumb.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const onMove = (e) => handleMove(e.touches[0].clientX);
+    const onEnd = () => {
+      document.removeEventListener('touchmove', onMove);
+      document.removeEventListener('touchend', onEnd);
+    };
+    document.addEventListener('touchmove', onMove);
+    document.addEventListener('touchend', onEnd);
+  });
+});
+
+// ═══════════════════════════════════════════
+// Nav toggle
+// ═══════════════════════════════════════════
+function toggleNav() {
+  document.getElementById('navToggle').classList.toggle('open');
+  document.getElementById('navDropdown').classList.toggle('open');
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav-hamburger') && !e.target.closest('.nav-dropdown')) {
+    document.getElementById('navToggle').classList.remove('open');
+    document.getElementById('navDropdown').classList.remove('open');
+  }
+});
+
+// ═══════════════════════════════════════════
+// Waitlist
+// ═══════════════════════════════════════════
+function submitWaitlist() {
+  const email = document.getElementById('waitlistEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('waitlistEmail').style.outline = '2px solid rgba(255,100,100,.5)';
+    return;
+  }
+  const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL';
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: email,
+      source: 'demo-page',
+      timestamp: new Date().toISOString()
+    })
+  });
+  document.getElementById('waitlistForm').innerHTML =
+    '<div style="padding:12px;color:rgba(255,255,255,.9);font-size:1rem;">You\'re on the list! I\'ll be in touch soon. 💛</div>';
+}
+</script>
+
 
 </body>
 </html>
